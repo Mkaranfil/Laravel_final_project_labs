@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\LogoController;
+use App\Http\Controllers\LogoTitreController;
+use App\Http\Controllers\NavbarController;
+use App\Models\Logo;
+use App\Models\LogoTitre;
+use App\Models\Navbar;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -14,11 +20,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/homeSite', function () {
-    return view('frontend/pages/home');
+    $navbar= Navbar::all();
+    $logo=Logo::all();
+    $logoTitre=LogoTitre::all();
+    return view('frontend/pages/home',compact('navbar','logo','logoTitre'));
 });
 Route::get('/services', function () {
     return view('frontend/pages/services');
@@ -33,7 +42,13 @@ Route::get('/contact', function () {
 
 
 Auth::routes();
+Route::get('/membresLabs', function() {
+    $logo=Logo::all();
+    return view('home',compact('logo'));
+})->name('homeLTE')->middleware('auth');
 
-Route::get('/home', function() {
-    return view('home');
-})->name('home')->middleware('auth');
+
+
+Route::resource('navbar', NavbarController::class);
+Route::resource('logo', LogoController::class);
+Route::resource('logoTitre', LogoTitreController::class);

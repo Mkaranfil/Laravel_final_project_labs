@@ -2,8 +2,10 @@
 <div class="hero-section">
     <div class="hero-content">
         <div class="hero-center">
-            <img src="img/big-logo.png" alt="">
-            <p>Get your freebie template now!</p>
+            <img src="{{asset('storage/img/'.$logo[0]->src)}}" alt="" height="200px" width="550px">
+            @foreach ($logoTitre as $item)
+                <p>{{$item->titre}}</p>    
+            @endforeach
         </div>
     </div>
     <!-- slider -->

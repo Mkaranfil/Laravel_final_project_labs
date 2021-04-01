@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'membres LABS',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,9 +45,9 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => 'yo',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo_img_class' => 'brand-image elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => 'AdminLTE',
@@ -224,11 +224,11 @@ return [
     */
 
     'menu' => [
-        [
-            'text' => 'search',
-            'search' => true,
-            'topnav' => true,
-        ],
+        // [
+        //     'text' => 'search',
+        //     'search' => false,
+        //     'topnav' => true,
+        // ],
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
@@ -240,6 +240,11 @@ return [
             'icon'        => 'far fa-fw fa-file',
             'label'       => 4,
             'label_color' => 'success',
+        ],
+        [
+            'text' => 'RETOUR LABS',
+            'url'  => '/',
+            'icon' => 'fas fa-home',
         ],
         ['header' => 'account_settings'],
         [
@@ -290,22 +295,41 @@ return [
                 ],
             ],
         ],
-        ['header' => 'labels'],
+
+        ['header' => 'WEB SETTINGS'],
         [
-            'text'       => 'important',
+            'text'       => 'Navbar',
+            'icon_color' => 'red',
+            'url'        => '/navbar',
+        ],
+        [
+            'text'    => 'Home',
+            'icon_color' => 'yellow',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'logo + sous-titre',
+                    'icon_color' => 'yellow',
+                    'url'  => '/logo',
+                ],
+            ],
+        ],
+        [
+            'text'       => 'Services',
             'icon_color' => 'red',
             'url'        => '#',
         ],
         [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
+            'text'       => 'Blog',
             'icon_color' => 'cyan',
             'url'        => '#',
         ],
+        [
+            'text'       => 'Contact',
+            'icon_color' => 'green',
+            'url'        => '#',
+        ],
+        
     ],
 
     /*
