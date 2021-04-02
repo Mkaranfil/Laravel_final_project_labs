@@ -3,7 +3,7 @@
 <div class="about-contant">
     <div class="container">
         <div class="section-title">
-            <h2>Get in <span>the Lab</span> and discover the world</h2>
+            <h2>{{$homeTitre[0]->titre}}</h2>
         </div>
         <div class="row">
             <div class="col-md-6">
@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="text-center mt60">
-            <a href="" class="site-btn">Browse</a>
+            <a href="#team-section" class="site-btn">Browse</a>
         </div>
         <!-- popup video -->
         <div class="intro-video">

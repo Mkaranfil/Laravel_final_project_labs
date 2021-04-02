@@ -1,13 +1,16 @@
 <?php
 
 use App\Http\Controllers\CarouselController;
+use App\Http\Controllers\HomeTitreController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\LogoTitreController;
 use App\Http\Controllers\NavbarController;
 use App\Models\Carousel;
+use App\Models\HomeTitre;
 use App\Models\Logo;
 use App\Models\LogoTitre;
 use App\Models\Navbar;
+use Database\Seeders\HomeTitreSeeder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -30,7 +33,8 @@ Route::get('/', function () {
     $logo=Logo::all();
     $logoTitre=LogoTitre::all();
     $carousel=Carousel::all();
-    return view('frontend/pages/home',compact('navbar','logo','logoTitre','carousel'));
+    $homeTitre=HomeTitre::all();
+    return view('frontend/pages/home',compact('navbar','logo','logoTitre','carousel','homeTitre'));
 });
 Route::get('/services', function () {
     return view('frontend/pages/services');
@@ -56,3 +60,4 @@ Route::resource('navbar', NavbarController::class);
 Route::resource('logo', LogoController::class);
 Route::resource('logoTitre', LogoTitreController::class);
 Route::resource('carousel', CarouselController::class);
+Route::resource('homeTitre', HomeTitreController::class);

@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             LogoSeeder::class,
             LogoTitreSeeder::class,
             CarouselSeeder::class,
+            HomeTitreSeeder::class,
         ]);
     }
 }
