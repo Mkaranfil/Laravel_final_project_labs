@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carousel;
 use App\Models\Logo;
 use App\Models\LogoTitre;
 use Illuminate\Http\Request;
@@ -82,8 +83,8 @@ class LogoController extends Controller
      * @param  \App\Models\Logo  $logo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Logo $logo)
+    public function destroy($id)
     {
-        //
+    
     }
 }

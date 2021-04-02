@@ -312,11 +312,16 @@ return [
                     'icon_color' => 'yellow',
                     'url'  => '/logo',
                 ],
+                [
+                    'text' => 'carousel',
+                    'icon_color' => 'yellow',
+                    'url'  => '/carousel',
+                ],
             ],
         ],
         [
             'text'       => 'Services',
-            'icon_color' => 'red',
+            'icon_color' => 'green',
             'url'        => '#',
         ],
         [

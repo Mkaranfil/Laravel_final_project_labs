@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\LogoTitreController;
 use App\Http\Controllers\NavbarController;
+use App\Models\Carousel;
 use App\Models\Logo;
 use App\Models\LogoTitre;
 use App\Models\Navbar;
@@ -27,7 +29,8 @@ Route::get('/', function () {
     $navbar= Navbar::all();
     $logo=Logo::all();
     $logoTitre=LogoTitre::all();
-    return view('frontend/pages/home',compact('navbar','logo','logoTitre'));
+    $carousel=Carousel::all();
+    return view('frontend/pages/home',compact('navbar','logo','logoTitre','carousel'));
 });
 Route::get('/services', function () {
     return view('frontend/pages/services');
@@ -52,3 +55,4 @@ Route::get('/membresLabs', function() {
 Route::resource('navbar', NavbarController::class);
 Route::resource('logo', LogoController::class);
 Route::resource('logoTitre', LogoTitreController::class);
+Route::resource('carousel', CarouselController::class);
