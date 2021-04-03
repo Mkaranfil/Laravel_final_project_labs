@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             LogoTitreSeeder::class,
             CarouselSeeder::class,
             HomeTitreSeeder::class,
+            ParaHomeSeeder::class,
         ]);
     }
 }

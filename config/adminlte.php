@@ -323,6 +323,11 @@ return [
                     'icon_color' => 'yellow',
                     'url'  => '/homeTitre',
                 ],
+                [
+                    'text' => 'Paragraphe',
+                    'icon_color' => 'yellow',
+                    'url'  => '/paraHome',
+                ],
             ],
         ],
         [

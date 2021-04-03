@@ -5,11 +5,13 @@ use App\Http\Controllers\HomeTitreController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\LogoTitreController;
 use App\Http\Controllers\NavbarController;
+use App\Http\Controllers\ParaHomeController;
 use App\Models\Carousel;
 use App\Models\HomeTitre;
 use App\Models\Logo;
 use App\Models\LogoTitre;
 use App\Models\Navbar;
+use App\Models\ParaHome;
 use Database\Seeders\HomeTitreSeeder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -34,7 +36,8 @@ Route::get('/', function () {
     $logoTitre=LogoTitre::all();
     $carousel=Carousel::all();
     $homeTitre=HomeTitre::all();
-    return view('frontend/pages/home',compact('navbar','logo','logoTitre','carousel','homeTitre'));
+    $para=ParaHome::all();
+    return view('frontend/pages/home',compact('navbar','logo','logoTitre','carousel','homeTitre','para'));
 });
 Route::get('/services', function () {
     return view('frontend/pages/services');
@@ -61,3 +64,4 @@ Route::resource('logo', LogoController::class);
 Route::resource('logoTitre', LogoTitreController::class);
 Route::resource('carousel', CarouselController::class);
 Route::resource('homeTitre', HomeTitreController::class);
+Route::resource('paraHome', ParaHomeController::class);

@@ -53,13 +53,7 @@ class HomeTitreController extends Controller
         return view('backend/pages/edit/homeTitreEdit',compact('edit'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\HomeTitre  $homeTitre
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, $id)
     {
         $validation = $request->validate([
