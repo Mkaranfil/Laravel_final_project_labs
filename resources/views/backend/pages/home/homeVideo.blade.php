@@ -17,25 +17,25 @@
             </div>
         @endif
     </div>
-    <h1 style="text-decoration: underline">Titres de la pages Home:</h1>
+    <h1 style="text-decoration: underline">Lien de la video Home:</h1>
     <h3>Tables: </h3>
     <table class="table table-striped table-hover shadow">
         <thead class="bg-dark">
           <tr>
             <th scope="col">ID</th>
-            <th scope="col">titre</th>
-            <th scope="col">description</th>
+            <th scope="col">Lien</th>
+            <th scope="col">info</th>
             <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
-            @foreach ($homeTitre as $item)
+            @foreach ($video as $item)
           <tr>
               <th scope="row">{{$item->id}}</th>
-              <td>{{$item->titre}}</td>
-              <td>{{$item->description}}</td>
+              <td>{{$item->lien}}</td>
+              <td>{{$item->info}}</td>
               <td>
-                <a href="homeTitre/{{ $item->id }}/edit" class="btn btn-warning mb-2">Edit</a>
+                <a href="homeVideo/{{ $item->id }}/edit" class="btn btn-warning mb-2">Edit</a>
               </td>   
             </tr>
             @endforeach

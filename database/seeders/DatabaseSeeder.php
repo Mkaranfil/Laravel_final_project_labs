@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             CarouselSeeder::class,
             HomeTitreSeeder::class,
             ParaHomeSeeder::class,
+            HomeVideoSeeder::class,
         ]);
     }
 }

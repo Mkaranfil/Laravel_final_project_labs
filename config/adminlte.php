@@ -328,6 +328,11 @@ return [
                     'icon_color' => 'yellow',
                     'url'  => '/paraHome',
                 ],
+                [
+                    'text' => 'Lien video',
+                    'icon_color' => 'yellow',
+                    'url'  => '/homeVideo',
+                ],
             ],
         ],
         [

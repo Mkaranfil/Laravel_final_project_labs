@@ -4,6 +4,21 @@
 		<div class="card-section">
 			<div class="container">
 				<div class="row">
+
+					{{-- @foreach ($resources->random(3) as $item)
+                    <!-- single card -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="lab-card">
+                            <div class="icon">
+                                <i class="{{$item->icons->name}}"></i>
+                            </div>
+                            <h2>{{$item->title}}</h2>
+                            <p>{{$item->content}}</p>
+                        </div>
+                    </div>
+                    <!-- single card -->
+                @endforeach --}}
+				
 					<!-- single card -->
 					<div class="col-md-4 col-sm-6">
 						<div class="lab-card">
