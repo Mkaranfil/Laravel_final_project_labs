@@ -309,17 +309,17 @@ return [
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'logo + sous-titre',
+                    'text' => 'Logo + Sous-titre',
                     'icon_color' => 'yellow',
                     'url'  => '/logo',
                 ],
                 [
-                    'text' => 'carousel',
+                    'text' => 'Carousel',
                     'icon_color' => 'yellow',
                     'url'  => '/carousel',
                 ],
                 [
-                    'text' => 'titre',
+                    'text' => 'Titre',
                     'icon_color' => 'yellow',
                     'url'  => '/homeTitre',
                 ],
@@ -341,9 +341,17 @@ return [
             ],
         ],
         [
-            'text'       => 'Services',
+            'text'    => 'Services',
             'icon_color' => 'green',
-            'url'        => '#',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'Titre',
+                    'icon_color' => 'green',
+                    'url'  => '/serviceTitre',
+                ],
+            
+            ],
         ],
         [
             'text'       => 'Blog',

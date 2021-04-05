@@ -7,6 +7,7 @@ use App\Http\Controllers\LogoController;
 use App\Http\Controllers\LogoTitreController;
 use App\Http\Controllers\NavbarController;
 use App\Http\Controllers\ParaHomeController;
+use App\Http\Controllers\ServiceTitreController;
 use App\Http\Controllers\TestimonialController;
 use App\Models\Carousel;
 use App\Models\HomeTitre;
@@ -15,6 +16,7 @@ use App\Models\Logo;
 use App\Models\LogoTitre;
 use App\Models\Navbar;
 use App\Models\ParaHome;
+use App\Models\ServiceTitre;
 use App\Models\Testimonial;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -34,9 +36,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/', function () {
+    // -----Template-----
     $navbar= Navbar::all();
     $logo=Logo::all();
     $logoTitre=LogoTitre::all();
+    // // -----HOME-----
     $carousel=Carousel::all();
     $homeTitre=HomeTitre::all();
     $para=ParaHome::all();
@@ -45,13 +49,27 @@ Route::get('/', function () {
     return view('frontend/pages/home',compact('navbar','logo','logoTitre','carousel','homeTitre','para','video','testimonial',));
 });
 Route::get('/services', function () {
-    return view('frontend/pages/services');
+    // -----Template-----
+    $navbar= Navbar::all();
+    $logo=Logo::all();
+    $logoTitre=LogoTitre::all();
+    // -----SERVICES-----
+    $serviceTitre=ServiceTitre::all();
+    return view('frontend/pages/services', compact('navbar','logo','logoTitre','serviceTitre'));
 });
 Route::get('/blog', function () {
-    return view('frontend/pages/blog');
+     // -----Template-----
+     $navbar= Navbar::all();
+     $logo=Logo::all();
+     $logoTitre=LogoTitre::all();
+    return view('frontend/pages/blog',compact('navbar','logo','logoTitre',));
 });
 Route::get('/contact', function () {
-    return view('frontend/pages/contact');
+     // -----Template-----
+     $navbar= Navbar::all();
+     $logo=Logo::all();
+     $logoTitre=LogoTitre::all();
+    return view('frontend/pages/contact',compact('navbar','logo','logoTitre',));
 });
 
 
@@ -63,7 +81,7 @@ Route::get('/membresLabs', function() {
 })->name('homeLTE')->middleware('auth');
 
 
-// home
+// -----HOME-----
 Route::resource('navbar', NavbarController::class);
 Route::resource('logo', LogoController::class);
 Route::resource('logoTitre', LogoTitreController::class);
@@ -72,3 +90,5 @@ Route::resource('homeTitre', HomeTitreController::class);
 Route::resource('paraHome', ParaHomeController::class);
 Route::resource('homeVideo', HomeVideoController::class);
 Route::resource('testimonial', TestimonialController::class);
+// -----SERVICE-----
+Route::resource('serviceTitre', ServiceTitreController::class);

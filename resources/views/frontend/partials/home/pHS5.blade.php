@@ -115,7 +115,7 @@
 				</div>
 			</div>
 			<div class="text-center">
-				<a href="" class="site-btn">Browse</a>
+				<a href="/services" class="site-btn">GO SERVICE</a>
 			</div>
 		</div>
 	</div>

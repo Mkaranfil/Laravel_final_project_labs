@@ -18,19 +18,19 @@ class NavbarSeeder extends Seeder
             [
                 [
                     'titre' => "Home",
-                    'href'=>"#",
+                    'href'=>"/",
                 ],
                 [
                     'titre' => "Services",
-                    'href'=>"#",
+                    'href'=>"/services",
                 ],
                 [
                     'titre' => "Blog",
-                    'href'=>"#",
+                    'href'=>"/blog",
                 ],
                 [
                     'titre' => "Contact",
-                    'href'=>"#",
+                    'href'=>"/contact",
                 ],
                
             ]

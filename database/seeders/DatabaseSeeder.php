@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
             ParaHomeSeeder::class,
             HomeVideoSeeder::class,
             TestiPictureSeeder::class,
+            // service
+            ServiceTitreSeeder::class,
 
         ]);
         Testimonial::factory()->count(10)->create();
