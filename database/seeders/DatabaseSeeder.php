@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Carousel;
+use App\Models\Testimonial;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,6 +23,9 @@ class DatabaseSeeder extends Seeder
             HomeTitreSeeder::class,
             ParaHomeSeeder::class,
             HomeVideoSeeder::class,
+            TestiPictureSeeder::class,
+
         ]);
+        Testimonial::factory()->count(10)->create();
     }
 }

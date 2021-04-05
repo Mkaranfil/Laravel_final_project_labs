@@ -16,7 +16,7 @@
             @endforeach
         </div>
         <div class="text-center mt60">
-            <a href="#team-section" class="site-btn">Browse</a>
+            <a href="#team-section" class="site-btn">TEAM</a>
         </div>
         <!-- popup video -->
         <div class="intro-video">

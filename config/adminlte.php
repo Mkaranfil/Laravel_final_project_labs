@@ -333,6 +333,11 @@ return [
                     'icon_color' => 'yellow',
                     'url'  => '/homeVideo',
                 ],
+                [
+                    'text' => 'Testimonial',
+                    'icon_color' => 'yellow',
+                    'url'  => '/testimonial',
+                ],
             ],
         ],
         [

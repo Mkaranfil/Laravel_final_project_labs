@@ -7,6 +7,7 @@ use App\Http\Controllers\LogoController;
 use App\Http\Controllers\LogoTitreController;
 use App\Http\Controllers\NavbarController;
 use App\Http\Controllers\ParaHomeController;
+use App\Http\Controllers\TestimonialController;
 use App\Models\Carousel;
 use App\Models\HomeTitre;
 use App\Models\HomeVideo;
@@ -14,7 +15,7 @@ use App\Models\Logo;
 use App\Models\LogoTitre;
 use App\Models\Navbar;
 use App\Models\ParaHome;
-use Database\Seeders\HomeTitreSeeder;
+use App\Models\Testimonial;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -40,7 +41,8 @@ Route::get('/', function () {
     $homeTitre=HomeTitre::all();
     $para=ParaHome::all();
     $video=HomeVideo::all();
-    return view('frontend/pages/home',compact('navbar','logo','logoTitre','carousel','homeTitre','para','video'));
+    $testimonial=Testimonial::orderBy('id','DESC')->get()->take(6);
+    return view('frontend/pages/home',compact('navbar','logo','logoTitre','carousel','homeTitre','para','video','testimonial',));
 });
 Route::get('/services', function () {
     return view('frontend/pages/services');
@@ -61,7 +63,7 @@ Route::get('/membresLabs', function() {
 })->name('homeLTE')->middleware('auth');
 
 
-
+// home
 Route::resource('navbar', NavbarController::class);
 Route::resource('logo', LogoController::class);
 Route::resource('logoTitre', LogoTitreController::class);
@@ -69,3 +71,4 @@ Route::resource('carousel', CarouselController::class);
 Route::resource('homeTitre', HomeTitreController::class);
 Route::resource('paraHome', ParaHomeController::class);
 Route::resource('homeVideo', HomeVideoController::class);
+Route::resource('testimonial', TestimonialController::class);
