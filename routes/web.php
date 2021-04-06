@@ -7,6 +7,7 @@ use App\Http\Controllers\LogoController;
 use App\Http\Controllers\LogoTitreController;
 use App\Http\Controllers\NavbarController;
 use App\Http\Controllers\ParaHomeController;
+use App\Http\Controllers\ServiceListeController;
 use App\Http\Controllers\ServiceTitreController;
 use App\Http\Controllers\TestimonialController;
 use App\Models\Carousel;
@@ -16,6 +17,7 @@ use App\Models\Logo;
 use App\Models\LogoTitre;
 use App\Models\Navbar;
 use App\Models\ParaHome;
+use App\Models\ServiceListe;
 use App\Models\ServiceTitre;
 use App\Models\Testimonial;
 use Illuminate\Support\Facades\Auth;
@@ -46,7 +48,8 @@ Route::get('/', function () {
     $para=ParaHome::all();
     $video=HomeVideo::all();
     $testimonial=Testimonial::orderBy('id','DESC')->get()->take(6);
-    return view('frontend/pages/home',compact('navbar','logo','logoTitre','carousel','homeTitre','para','video','testimonial',));
+    $serviceListe=ServiceListe::All();
+    return view('frontend/pages/home',compact('navbar','logo','logoTitre','carousel','homeTitre','para','video','testimonial','serviceListe'));
 });
 Route::get('/services', function () {
     // -----Template-----
@@ -55,7 +58,8 @@ Route::get('/services', function () {
     $logoTitre=LogoTitre::all();
     // -----SERVICES-----
     $serviceTitre=ServiceTitre::all();
-    return view('frontend/pages/services', compact('navbar','logo','logoTitre','serviceTitre'));
+    $serviceListe=ServiceListe::all();
+    return view('frontend/pages/services', compact('navbar','logo','logoTitre','serviceTitre','serviceListe'));
 });
 Route::get('/blog', function () {
      // -----Template-----
@@ -92,3 +96,4 @@ Route::resource('homeVideo', HomeVideoController::class);
 Route::resource('testimonial', TestimonialController::class);
 // -----SERVICE-----
 Route::resource('serviceTitre', ServiceTitreController::class);
+Route::resource('serviceListe', ServiceListeController::class);

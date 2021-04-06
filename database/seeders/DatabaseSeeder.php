@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Carousel;
+use App\Models\ServiceListe;
 use App\Models\Testimonial;
 use Illuminate\Database\Seeder;
 
@@ -26,8 +27,10 @@ class DatabaseSeeder extends Seeder
             TestiPictureSeeder::class,
             // service
             ServiceTitreSeeder::class,
+            IconSeeder::class,
 
         ]);
         Testimonial::factory()->count(10)->create();
+        ServiceListe::factory()->count(18)->create();
     }
 }

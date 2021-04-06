@@ -350,6 +350,11 @@ return [
                     'icon_color' => 'green',
                     'url'  => '/serviceTitre',
                 ],
+                [
+                    'text' => 'Service Liste',
+                    'icon_color' => 'green',
+                    'url'  => '/serviceListe',
+                ],
             
             ],
         ],
