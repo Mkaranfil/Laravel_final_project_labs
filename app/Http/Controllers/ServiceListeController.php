@@ -10,9 +10,9 @@ class ServiceListeController extends Controller
 {
     public function index()
     {
-        $serviceListe=ServiceListe::all();
+        $serviceListe=ServiceListe::orderBy('id')->paginate(9);
         $icon=Icon::all();
-        return view('backend/pages/service/serviceListe',compact('serviceListe','icon'));
+        return view('backend/pages/service/serviceListe',compact('serviceListe','icon',));
     }
 
     /**
@@ -28,8 +28,8 @@ class ServiceListeController extends Controller
     public function store(Request $request)
     {
         $validation = $request->validate([
-            "texte" => 'required',
-            "titre" => 'required',
+            "texte" => 'required|max:30|min:4',
+            "titre" => 'required|max:350|min:10',
             "icon_id" => 'required',
         ]);
       

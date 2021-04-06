@@ -355,12 +355,18 @@ return [
                     'icon_color' => 'green',
                     'url'  => '/serviceListe',
                 ],
+                [
+                    'text' => 'Cartes',
+                    'icon_color' => 'green',
+                    'url'  => '/serviceCarte',
+                ],
             
             ],
         ],
         [
             'text'       => 'Blog',
-            'icon_color' => 'cyan',
+            'icon'    => 'fas fa-fw fa-share',
+            'icon_color' => 'red',
             'url'        => '#',
         ],
         [

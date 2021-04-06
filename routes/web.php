@@ -7,6 +7,7 @@ use App\Http\Controllers\LogoController;
 use App\Http\Controllers\LogoTitreController;
 use App\Http\Controllers\NavbarController;
 use App\Http\Controllers\ParaHomeController;
+use App\Http\Controllers\ServiceCardController;
 use App\Http\Controllers\ServiceListeController;
 use App\Http\Controllers\ServiceTitreController;
 use App\Http\Controllers\TestimonialController;
@@ -17,11 +18,11 @@ use App\Models\Logo;
 use App\Models\LogoTitre;
 use App\Models\Navbar;
 use App\Models\ParaHome;
+use App\Models\ServiceCard;
 use App\Models\ServiceListe;
 use App\Models\ServiceTitre;
 use App\Models\Testimonial;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,7 +63,8 @@ Route::get('/services', function () {
     $serviceListe=ServiceListe::orderBy('id','DESC')->paginate(9);
     $serviceSmart=ServiceListe::orderBy('id','DESC')->get()->take(6);
     // $pagination= DB::table('service_listes')->orderBy('id','desc')->paginate(9);
-    return view('frontend/pages/services', compact('navbar','logo','logoTitre','serviceTitre','serviceListe','serviceSmart'));
+    $serviceCarte=ServiceCard::orderBy('id','DESC')->get()->take(3); 
+    return view('frontend/pages/services', compact('navbar','logo','logoTitre','serviceTitre','serviceListe','serviceSmart','serviceCarte'));
 });
 Route::get('/blog', function () {
      // -----Template-----
@@ -100,3 +102,4 @@ Route::resource('testimonial', TestimonialController::class);
 // -----SERVICE-----
 Route::resource('serviceTitre', ServiceTitreController::class);
 Route::resource('serviceListe', ServiceListeController::class);
+Route::resource('serviceCarte', ServiceCardController::class);
