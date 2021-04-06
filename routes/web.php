@@ -21,6 +21,7 @@ use App\Models\ServiceListe;
 use App\Models\ServiceTitre;
 use App\Models\Testimonial;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,7 +49,7 @@ Route::get('/', function () {
     $para=ParaHome::all();
     $video=HomeVideo::all();
     $testimonial=Testimonial::orderBy('id','DESC')->get()->take(6);
-    $serviceListe=ServiceListe::All();
+    $serviceListe=ServiceListe::all();
     return view('frontend/pages/home',compact('navbar','logo','logoTitre','carousel','homeTitre','para','video','testimonial','serviceListe'));
 });
 Route::get('/services', function () {
@@ -58,8 +59,10 @@ Route::get('/services', function () {
     $logoTitre=LogoTitre::all();
     // -----SERVICES-----
     $serviceTitre=ServiceTitre::all();
-    $serviceListe=ServiceListe::all();
-    return view('frontend/pages/services', compact('navbar','logo','logoTitre','serviceTitre','serviceListe'));
+    $serviceListe=ServiceListe::orderBy('id','DESC')->paginate(9);
+    $serviceSmart=ServiceListe::orderBy('id','DESC')->get()->take(6);
+    // $pagination= DB::table('service_listes')->orderBy('id','desc')->paginate(9);
+    return view('frontend/pages/services', compact('navbar','logo','logoTitre','serviceTitre','serviceListe','serviceSmart'));
 });
 Route::get('/blog', function () {
      // -----Template-----

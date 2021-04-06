@@ -24,6 +24,9 @@
                 @endif
             @endforeach 
         </div>
+        <div class="text-center">
+            {{  $serviceListe->fragment('service_listes')->links('vendor.pagination.bootstrap-4') }}
+        </div>
     </div>
 </div>
 <!-- services section end -->
