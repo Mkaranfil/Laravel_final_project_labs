@@ -6,6 +6,7 @@ use App\Models\Carousel;
 use App\Models\ServiceCard;
 use App\Models\ServiceListe;
 use App\Models\Testimonial;
+use App\Models\UserPicture;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -30,6 +31,11 @@ class DatabaseSeeder extends Seeder
             ServiceTitreSeeder::class,
             IconSeeder::class,
             CardPictureSeeder::class,
+            // user
+            RoleSeeder::class, 
+            PosteSeeder::class, 
+            UserPictureSeeder::class, 
+            MembreSeeder::class, 
 
         ]);
         Testimonial::factory()->count(10)->create();

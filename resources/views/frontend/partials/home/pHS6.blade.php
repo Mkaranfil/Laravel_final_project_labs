@@ -3,33 +3,28 @@
     <div class="overlay"></div>
     <div class="container">
         <div class="section-title">
-            <h2>{{$homeTitre[3]->titre}}</h2>
+            <h2>{{ $homeTitre[3]->titre }}</h2>
         </div>
         <div class="row">
-            <!-- single member -->
-            <div class="col-sm-4">
-                <div class="member">
-                    <img src="img/team/1.jpg" alt="">
-                    <h2>Christinne Williams</h2>
-                    <h3>Project Manager</h3>
+            @foreach ($users->where('poste_id', '!=', 1)->random(2) as $item)
+                <!-- single member -->
+                <div class="col-sm-4">
+                    <div class="member">
+                        <img height="400" width="90%" src="{{asset('storage/img/users/'.$item->user_pictures->src)}}"alt="">
+                        <h2>{{$item->nom}} {{$item->prenom}}</h2>
+                        <h3>{{$item->postes->poste}}</h3>
+                    </div>
                 </div>
-            </div>
-            <!-- single member -->
-            <div class="col-sm-4">
-                <div class="member">
-                    <img src="img/team/2.jpg" alt="">
-                    <h2>Christinne Williams</h2>
-                    <h3>Junior developer</h3>
-                </div>
-            </div>
-            <!-- single member -->
-            <div class="col-sm-4">
-                <div class="member">
-                    <img src="img/team/3.jpg" alt="">
-                    <h2>Christinne Williams</h2>
-                    <h3>Digital designer</h3>
-                </div>
-            </div>
+                @if ($loop->iteration == 1)
+                    <div class="col-sm-4">
+                        <div class="member">
+                            <img height="400" width="90%" src="{{asset('storage/img/users/'.$users[0]->user_pictures->src)}}" alt="">
+                            <h2>{{$users[0]->nom}} {{$users[0]->prenom}}</h2>
+                            <h3>{{$users[0]->postes->poste}}</h3>
+                        </div>
+                    </div>
+                @endif
+            @endforeach
         </div>
     </div>
 </div>

@@ -243,6 +243,11 @@ return [
             'label_color' => 'success',
         ],
         [
+            'text' => 'Acceuille',
+            'url'  => '/membresLabs',
+            'icon' => 'fas fa-home',
+        ],
+        [
             'text' => 'RETOUR LABS',
             'url'  => '/',
             'icon' => 'fas fa-home',
@@ -258,43 +263,19 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
+        
+        ['header' => 'MEMBRES'],
         [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
+            'text'       => 'Liste des membres',
+            'icon_color' => 'cyan',
+            'url'        => '/membre',
+        ],
+        [
+            'text'       => 'Nouveau membres',
+            'icon_color' => 'cyan',
+            'url'        => '/membre/create',
+            'label'       => 4,
+            'label_color' => 'success',
         ],
 
         ['header' => 'WEB SETTINGS'],
@@ -342,36 +323,44 @@ return [
         ],
         [
             'text'    => 'Services',
-            'icon_color' => 'green',
+            'icon_color' => 'cyan',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
                     'text' => 'Titre',
-                    'icon_color' => 'green',
+                    'icon_color' => 'cyan',
                     'url'  => '/serviceTitre',
                 ],
                 [
                     'text' => 'Service Liste',
-                    'icon_color' => 'green',
+                    'icon_color' => 'cyan',
                     'url'  => '/serviceListe',
                 ],
                 [
                     'text' => 'Cartes',
-                    'icon_color' => 'green',
+                    'icon_color' => 'cyan',
                     'url'  => '/serviceCarte',
                 ],
             
             ],
         ],
         [
-            'text'       => 'Blog',
+            'text'    => 'Blog',
+            'icon_color' => 'yellow',
             'icon'    => 'fas fa-fw fa-share',
-            'icon_color' => 'red',
-            'url'        => '#',
+            'submenu' => [
+                [
+                    'text' => 'Titre',
+                    'icon_color' => 'yellow',
+                    'url'  => '#',
+                ],
+            
+            ],
         ],
+       
         [
             'text'       => 'Contact',
-            'icon_color' => 'green',
+            'icon_color' => 'red',
             'url'        => '#',
         ],
         

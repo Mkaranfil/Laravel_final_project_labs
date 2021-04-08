@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\UserPicture;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -50,7 +52,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'prenom' => ['required', 'string', 'max:255'],
+            'nom' => ['required', 'string', 'max:255'],
+            'src'=>['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -64,10 +68,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $picture=UserPicture::create([
+            Storage::put('public/img/users', $data['src']),
+            'src' => $data['src']->hashName(),
+
+        ]);
         return User::create([
-            'name' => $data['name'],
+            'prenom' => $data['prenom'],
+            'nom' => $data['nom'],
             'email' => $data['email'],
+            'description' => $data['description'],
+            'role_id' => 4,
+            'check' =>0,
+            'picture_id'=>$picture->id,
+            'poste_id' => $data['poste_id'],
             'password' => Hash::make($data['password']),
         ]);
+
     }
 }

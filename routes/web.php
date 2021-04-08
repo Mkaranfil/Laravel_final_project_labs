@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeTitreController;
 use App\Http\Controllers\HomeVideoController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\LogoTitreController;
+use App\Http\Controllers\MembreController;
 use App\Http\Controllers\NavbarController;
 use App\Http\Controllers\ParaHomeController;
 use App\Http\Controllers\ServiceCardController;
@@ -22,6 +23,7 @@ use App\Models\ServiceCard;
 use App\Models\ServiceListe;
 use App\Models\ServiceTitre;
 use App\Models\Testimonial;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -51,7 +53,8 @@ Route::get('/', function () {
     $video=HomeVideo::all();
     $testimonial=Testimonial::orderBy('id','DESC')->get()->take(6);
     $serviceListe=ServiceListe::all();
-    return view('frontend/pages/home',compact('navbar','logo','logoTitre','carousel','homeTitre','para','video','testimonial','serviceListe'));
+    $users=User::all()->where('check','==','1');
+    return view('frontend/pages/home',compact('navbar','logo','logoTitre','carousel','homeTitre','para','video','testimonial','serviceListe','users'));
 });
 Route::get('/services', function () {
     // -----Template-----
@@ -83,6 +86,8 @@ Route::get('/contact', function () {
 
 
 
+
+
 Auth::routes();
 Route::get('/membresLabs', function() {
     $logo=Logo::all();
@@ -103,3 +108,6 @@ Route::resource('testimonial', TestimonialController::class);
 Route::resource('serviceTitre', ServiceTitreController::class);
 Route::resource('serviceListe', ServiceListeController::class);
 Route::resource('serviceCarte', ServiceCardController::class);
+// -----MEMBRES----
+Route::resource('membre', MembreController::class);
+Route::get('/valider/{id}', [MembreController::class,'valider']);
