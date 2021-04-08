@@ -277,6 +277,11 @@ return [
             'label'       => 4,
             'label_color' => 'success',
         ],
+        [
+            'text'       => 'Configuration',
+            'icon_color' => 'cyan',
+            'url'        => '/poste',
+        ],
 
         ['header' => 'WEB SETTINGS'],
         [

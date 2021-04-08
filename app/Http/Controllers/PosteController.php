@@ -3,18 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Poste;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class PosteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $poste=Poste::all();
+        $role=Role::all();
+        return view('backend/pages/membre/config',compact('poste','role'));
+       
     }
 
     /**
@@ -27,15 +26,17 @@ class PosteController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+     
     public function store(Request $request)
     {
-        //
+        $validation = $request->validate([
+            "poste" => 'required',
+          
+        ]);
+        $store = new Poste;
+        $store->poste = $request->poste;
+        $store->save();
+        return redirect()->back()->with('status', "Ajout confirme!");
     }
 
     /**
@@ -72,14 +73,10 @@ class PosteController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Poste  $poste
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Poste $poste)
+    public function destroy($id)
     {
-        //
+        $destroy = Poste::find($id);
+        $destroy->delete();
+        return redirect()->back()->with('delete', "Delet confirme!");
     }
 }

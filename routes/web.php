@@ -8,6 +8,8 @@ use App\Http\Controllers\LogoTitreController;
 use App\Http\Controllers\MembreController;
 use App\Http\Controllers\NavbarController;
 use App\Http\Controllers\ParaHomeController;
+use App\Http\Controllers\PosteController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ServiceCardController;
 use App\Http\Controllers\ServiceListeController;
 use App\Http\Controllers\ServiceTitreController;
@@ -76,6 +78,13 @@ Route::get('/blog', function () {
      $logoTitre=LogoTitre::all();
     return view('frontend/pages/blog',compact('navbar','logo','logoTitre',));
 });
+Route::get('/blog-post', function () {
+     // -----Template-----
+     $navbar= Navbar::all();
+     $logo=Logo::all();
+     $logoTitre=LogoTitre::all();
+    return view('frontend/pages/blog-post',compact('navbar','logo','logoTitre',));
+});
 Route::get('/contact', function () {
      // -----Template-----
      $navbar= Navbar::all();
@@ -110,4 +119,7 @@ Route::resource('serviceListe', ServiceListeController::class);
 Route::resource('serviceCarte', ServiceCardController::class);
 // -----MEMBRES----
 Route::resource('membre', MembreController::class);
+Route::resource('poste', PosteController::class);
+Route::resource('role', RoleController::class);
 Route::get('/valider/{id}', [MembreController::class,'valider']);
+// -----BLOG----

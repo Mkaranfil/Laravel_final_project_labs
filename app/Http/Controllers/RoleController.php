@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $poste=Role::all();
+        return view('backend/pages/membre/config',compact('role',));
+       
     }
 
     /**
@@ -26,15 +24,16 @@ class RoleController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $validation = $request->validateWithBag('role',[
+            "role" => 'required',
+          
+        ]);
+        $store = new Role;
+        $store->role = $request->role;
+        $store->save();
+        return redirect()->back()->with('status', "Ajout confirme!");
     }
 
     /**
@@ -71,14 +70,10 @@ class RoleController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $destroy = Role::find($id);
+        $destroy->delete();
+        return redirect()->back()->with('delete', "Delet confirme!");
     }
 }
