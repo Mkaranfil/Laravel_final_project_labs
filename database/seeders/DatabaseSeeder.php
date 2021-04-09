@@ -2,12 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Carousel;
+
+use App\Models\Post;
 use App\Models\ServiceCard;
 use App\Models\ServiceListe;
 use App\Models\Testimonial;
-use App\Models\UserPicture;
 use Illuminate\Database\Seeder;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,6 +19,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+       
         $this->call([
             NavbarSeeder::class,
             LogoSeeder::class,
@@ -36,10 +38,20 @@ class DatabaseSeeder extends Seeder
             PosteSeeder::class, 
             UserPictureSeeder::class, 
             MembreSeeder::class, 
-
+            // blog
+            TagSeeder::class,
+            CategorieSeeder::class,
+            BlogPictureSeeder::class,
+           
         ]);
         Testimonial::factory()->count(10)->create();
         ServiceListe::factory()->count(18)->create();
         ServiceCard::factory()->count(6)->create();
+        Post::factory()->count(4)->create();
+        
+        $this->call([
+            PostTagSeeder::class,
+        ]);
+       
     }
 }

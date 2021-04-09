@@ -15,15 +15,18 @@ use App\Http\Controllers\ServiceListeController;
 use App\Http\Controllers\ServiceTitreController;
 use App\Http\Controllers\TestimonialController;
 use App\Models\Carousel;
+use App\Models\Categorie;
 use App\Models\HomeTitre;
 use App\Models\HomeVideo;
 use App\Models\Logo;
 use App\Models\LogoTitre;
 use App\Models\Navbar;
 use App\Models\ParaHome;
+use App\Models\Post;
 use App\Models\ServiceCard;
 use App\Models\ServiceListe;
 use App\Models\ServiceTitre;
+use App\Models\Tag;
 use App\Models\Testimonial;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -76,7 +79,11 @@ Route::get('/blog', function () {
      $navbar= Navbar::all();
      $logo=Logo::all();
      $logoTitre=LogoTitre::all();
-    return view('frontend/pages/blog',compact('navbar','logo','logoTitre',));
+    // -----Blog-----
+    $tag=Tag::all();
+    $categorie=Categorie::all();
+    $post=Post::orderBy('id','DESC')->paginate(4);
+    return view('frontend/pages/blog',compact('navbar','logo','logoTitre','tag','categorie','post'));
 });
 Route::get('/blog-post', function () {
      // -----Template-----
@@ -93,6 +100,9 @@ Route::get('/contact', function () {
     return view('frontend/pages/contact',compact('navbar','logo','logoTitre',));
 });
 
+Route::fallback(function () {
+    return redirect()->back();
+});
 
 
 
