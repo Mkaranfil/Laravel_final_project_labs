@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
+use App\Models\Categorie;
+use App\Models\Logo;
+use App\Models\LogoTitre;
+use App\Models\Navbar;
+use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class BlogPostController extends Controller
@@ -81,5 +87,29 @@ class BlogPostController extends Controller
     public function destroy(BlogPost $blogPost)
     {
         //
+    }
+
+    public function search(Request $request){
+
+         // -----Template-----
+            $navbar=Navbar::all();
+            $logo=Logo::all();
+            $logoTitre=LogoTitre::all();
+        
+         // -----BLOG-----
+            $tag=Tag::all();
+            $categorie=Categorie::all();
+            
+         // -----Search-----
+            $search = $request->input('search');
+            $post = Post::query()->where('titre', 'LIKE', "%{$search}%")->get();
+            // ->orWhere('text', 'LIKE', "%{$search}%")
+
+
+        if ($post->isEmpty()) {
+            return redirect()->back()->with('search','Aucun article trouve');
+        } else {
+            return view('frontend/pages/blogSearch', compact('logo', 'navbar', 'categorie', 'tag', 'post','logoTitre',));
+        }
     }
 }

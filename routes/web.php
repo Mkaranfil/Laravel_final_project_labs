@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogPostController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\HomeTitreController;
 use App\Http\Controllers\HomeVideoController;
@@ -82,7 +83,7 @@ Route::get('/blog', function () {
     // -----Blog-----
     $tag=Tag::all();
     $categorie=Categorie::all();
-    $post=Post::orderBy('id','DESC')->paginate(4);
+    $post=Post::orderBy('id','DESC')->paginate(2);
     return view('frontend/pages/blog',compact('navbar','logo','logoTitre','tag','categorie','post'));
 });
 Route::get('/blog-post', function () {
@@ -133,3 +134,4 @@ Route::resource('poste', PosteController::class);
 Route::resource('role', RoleController::class);
 Route::get('/valider/{id}', [MembreController::class,'valider']);
 // -----BLOG----
+Route::get('/search', [BlogPostController::class, 'search']);

@@ -40,9 +40,9 @@
                         </div>
                     @endforeach
                 <!-- Pagination -->
-                <div class="page-pagiantion">
+                {{-- <div class="page-pagiantion">
                     {{  $post->fragment('service')->links('vendor.pagination.bootstrap-4') }}
-                </div>
+                </div> --}}
                 {{-- <div class="page-pagination">
                     <a class="active" href="">01.</a>
                     <a href="">02.</a>
