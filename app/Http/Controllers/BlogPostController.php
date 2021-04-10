@@ -95,6 +95,7 @@ class BlogPostController extends Controller
             $navbar=Navbar::all();
             $logo=Logo::all();
             $logoTitre=LogoTitre::all();
+         // -----Newsletter-----
         
          // -----BLOG-----
             $tag=Tag::all();
@@ -102,14 +103,74 @@ class BlogPostController extends Controller
             
          // -----Search-----
             $search = $request->input('search');
-            $post = Post::query()->where('titre', 'LIKE', "%{$search}%")->get();
+            $post = Post::query()->where('titre', 'LIKE', "%{$search}%")->paginate(2);
             // ->orWhere('text', 'LIKE', "%{$search}%")
 
 
-        if ($post->isEmpty()) {
-            return redirect()->back()->with('search','Aucun article trouve');
-        } else {
-            return view('frontend/pages/blogSearch', compact('logo', 'navbar', 'categorie', 'tag', 'post','logoTitre',));
-        }
+        // if ($post->isEmpty()) 
+        // if ($search==null){
+            // return redirect()->back()->with('search','Veuillez introduire votre recherche');
+        // } else {
+            return view('frontend/pages/blog', compact('logo', 'navbar', 'categorie', 'tag', 'post','logoTitre',));
+        // }
     }
+
+    public function filtreCategorie ($id){
+
+        // -----Template-----
+          $navbar=Navbar::all();
+          $logo=Logo::all();
+          $logoTitre=LogoTitre::all();
+    
+        // -----Newsletter-----
+
+
+        // -----COMMENTAIRE-----
+      
+        // -----BLOG-----
+          $tag=Tag::all();
+          $categorie=Categorie::all();
+        
+
+          $post=Post::where('categorie_id',$id)->paginate(2);
+
+
+          return view('frontend/pages/blog', compact('logo', 'navbar', 'categorie', 'tag', 'post','logoTitre',));
+       
+    }
+    public function filtreTag($id){
+
+        // -----Template-----
+          $navbar=Navbar::all();
+          $logo=Logo::all();
+          $logoTitre=LogoTitre::all();
+    
+        // -----Newsletter-----
+
+
+        // -----COMMENTAIRE-----
+      
+        // -----BLOG-----
+          $tag=Tag::all();
+          $categorie=Categorie::all();
+          $allPost=Post::all();
+         
+        
+
+          $post=[];
+          $array=[];
+          foreach ($allPost as $item) {
+              $array =$item->tags->pluck('id')->toArray();
+              if(in_array($id,$array)){
+                  array_push($post,$item);
+              }
+              unset($array);
+          }
+
+
+          return view('frontend/pages/blog', compact('logo', 'navbar', 'categorie', 'tag', 'post','logoTitre',));
+       
+    }
+
+
 }

@@ -135,3 +135,5 @@ Route::resource('role', RoleController::class);
 Route::get('/valider/{id}', [MembreController::class,'valider']);
 // -----BLOG----
 Route::get('/search', [BlogPostController::class, 'search']);
+Route::get('/filtreCategorie/{id}', [BlogPostController::class, 'filtreCategorie']);
+Route::get('/filtreTag/{id}', [BlogPostController::class, 'filtreTag']);
