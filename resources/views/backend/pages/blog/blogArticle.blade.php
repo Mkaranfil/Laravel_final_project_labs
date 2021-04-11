@@ -18,7 +18,7 @@
     </div>
     <h1 style="text-decoration: underline">Liste des Articles:</h1>
     <div>
-        <h3>Tables: </h3>
+        <h3>Article Verifie: </h3>
         <table class="table table-striped table-hover shadow">
             <thead class="bg-dark">
                 <tr>
@@ -41,6 +41,47 @@
                         </td>
                         <td>
                             <a href="/blogArticle/{{ $item->id }}" class="btn btn-warning">SHOW</a>
+                        </td>
+                        <td>
+                            <form action="/blogArticle/{{ $item->id }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    {{-- Artcile non validee --}}
+    <div>
+        <h3>Article a verifier: </h3>
+        <table class="table table-striped table-hover shadow">
+            <thead class="bg-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($articleNonValide as $item)
+                    <tr>
+                        <th scope="row">{{ $item->id }}</th>
+                        <td>{{ $item->titre }}
+                        <td>
+                            <td>
+                                <a href="/blogArticle/{{ $item->id }}" class="btn btn-warning">SHOW</a>
+                            </td>
+                        <td>
+                            <form action="/valider/{{ $item->id }}">
+                                @csrf
+                                <button type="submit" class="btn btn-success">VALIDER</button>
+                            </form>
                         </td>
                         <td>
                             <form action="/blogArticle/{{ $item->id }}" method="POST">

@@ -6,31 +6,35 @@
                 <!-- Single Post -->
                 <div class="single-post">
                     <div class="post-thumbnail">
-                        <img src="img/blog/blog-1.jpg" alt="">
+                        <img src="{{asset('storage/img/blog/'.$post->blog_pictures->src)}}" alt="">
                         <div class="post-date">
-                            <h2>03</h2>
-                            <h3>Nov 2017</h3>
+                            <h2>{{$post->created_at->format("d")}}</h2>
+                            <h3>{{$post->created_at->format("M Y")}}</h3>
                         </div>
                     </div>
                     <div class="post-content">
-                        <h2 class="post-title">Just a simple blog post</h2>
+                        <h2 class="post-title">{{$post->titre}}</h2>
                         <div class="post-meta">
-                            <a href="">Loredana Papp</a>
-                            <a href="">Design, Inspiration</a>
-                            <a href="">2 Comments</a>
+                            <a href="/filterCategorie/{{$post->categorie_id}}">{{$post->categories->nom}}</a>
+                            @foreach ($post->tags as $tagg)
+                                            @if ($loop->iteration == 1)
+                                                <a id="styleMeta" href="/filtreTag/{{$tagg->id}}">{{$tagg->tag}}</a>
+                                            @else
+                                                <a href="/filtreTag/{{$tagg->id}}">, {{$tagg->tag}}</a>
+                                            @endif   
+                            @endforeach
+                            <a id="styleMeta" href="">2 Comments</a>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Phasellus vestibulum, quam tincidunt venenatis ultrices, est libero mattis ante, ac consectetur diam neque eget quam. Etiam feugiat augue et varius blandit. Praesent mattis, eros a sodales commodo.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum, quam tincidunt venenatis ultrices, est libero mattis ante, ac consectetur diam neque eget quam. Etiam feugiat augue et varius blandit. Praesent mattis, eros a sodales commodo, justo ipsum rutrum mauris, sit amet egestas metus quam sed dolor. Sed consectetur, dui sed sollicitudin eleifend, arcu neque egestas lectus, sagittis viverra justo massa ut sapien. Aenean viverra ornare mauris eget lobortis. Cras vulputate elementum magna, tincidunt pharetra erat condimentum sit amet. Maecenas vitae ligula pretium, convallis magna eu, ultricies quam. In hac habitasse platea dictumst. </p>
-                        <p>Fusce vel tempus nunc. Phasellus et risus eget sapien suscipit efficitur. Suspendisse iaculis purus ornare urna egestas imperdiet. Nulla congue consectetur placerat. Integer sit amet auctor justo. Pellentesque vel congue velit. Sed ullamcorper lacus scelerisque condimentum convallis. Sed ac mollis sem. </p>
+                        <p>{!! $post->texte !!}</p>
                     </div>
                     <!-- Post Author -->
                     <div class="author">
                         <div class="avatar">
-                            <img src="img/avatar/03.jpg" alt="">
+                            <img src="{{asset('storage/img/users/'.$post->users->user_pictures->src)}}" height="120px">
                         </div>
                         <div class="author-info">
-                            <h2>Lore Williams, <span>Author</span></h2>
-                            <p>Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. </p>
+                            <h2>{{$post->users->nom}} {{$post->users->prenom}}, <span>{{$post->users->roles->role}}</span></h2>
+                            <p>{{$post->users->description}}</p>
                         </div>
                     </div>
                     <!-- Post Comments -->

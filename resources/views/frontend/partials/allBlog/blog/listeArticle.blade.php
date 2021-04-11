@@ -9,7 +9,7 @@
                         <h1>Aucun artcile n'a ete trouve</h1>
                     </div>
                 @else
-                    @foreach ($post as $item)
+                    @foreach ($post->where('check',1) as $item)
                         <div class="post-item">
                                 <div class="post-thumbnail ">
                                     <img src="{{asset('storage/img/blog/'.$item->blog_pictures->src)}}" alt="">
@@ -34,7 +34,7 @@
                                         <a id="styleMeta" href="">2 Comments</a>
                                     </div>
                                     <p>{!!Str::limit($item->texte, 300)!!}</p>
-                                    <a href="/blog-post" class="read-more ">Read More</a>
+                                    <a href="/blogArticle/{{$item->id}}" class="read-more ">Read More</a>
                                 </div>
                             </div>
                         @endforeach

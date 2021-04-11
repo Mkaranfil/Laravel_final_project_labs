@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\BlogPicture;
 use App\Models\Categorie;
+use App\Models\Logo;
+use App\Models\LogoTitre;
+use App\Models\Navbar;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -14,11 +17,21 @@ class PostController extends Controller
 {
     public function index()
     {
-        $article=Post::all();
+        $article=Post::where('check',1)->get();
+        $articleNonValide=Post::where('check',0)->get();
         $categorie=Categorie::all();
         $tag=Tag::all();
         $br="<br>";
-        return view('backend/pages/blog/blogArticle',compact('article','categorie','tag','br'));
+        return view('backend/pages/blog/blogArticle',compact('article','categorie','tag','br','articleNonValide'));
+    }
+
+    public function valider($id)
+    {
+        $valider = Post::find($id);
+        $valider->check = 1;
+        $valider->save();
+        // Mail::to('tidoraa@gmail.com')->send(new SendRegister($user));
+        return redirect()->back()->with('status','Article Valide!');
     }
 
     /**
@@ -28,7 +41,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+    
     }
 
     public function store(Request $request)
@@ -68,9 +81,17 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        //
+        // -----Template-----
+        $navbar= Navbar::all();
+        $logo=Logo::all();
+        $logoTitre=LogoTitre::all();
+        // -----Blog-----
+        $tag=Tag::all();
+        $categorie=Categorie::all();
+        $post=Post::find($id);
+        return view('frontend/pages/blog-post',compact('navbar','logo','logoTitre','tag','categorie','post'));
     }
 
     public function edit($id)

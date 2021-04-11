@@ -94,7 +94,11 @@ Route::get('/blog-post', function () {
      $navbar= Navbar::all();
      $logo=Logo::all();
      $logoTitre=LogoTitre::all();
-    return view('frontend/pages/blog-post',compact('navbar','logo','logoTitre',));
+     // -----Blog-----
+    $tag=Tag::all();
+    $categorie=Categorie::all();
+    $post=Post::all();
+    return view('frontend/pages/blog-post',compact('navbar','logo','logoTitre','tag','categorie','post'));
 });
 Route::get('/contact', function () {
      // -----Template-----
@@ -107,7 +111,6 @@ Route::get('/contact', function () {
 Route::fallback(function () {
     return redirect()->back();
 });
-
 
 
 
@@ -140,6 +143,7 @@ Route::get('/valider/{id}', [MembreController::class,'valider']);
 Route::resource('blogCategorie', CategorieController::class);
 Route::resource('blogTag', TagController::class);
 Route::resource('blogArticle', PostController::class);
+Route::get('/valider/{id}', [PostController::class,'valider']);
 Route::get('/search', [BlogPostController::class, 'search']);
 Route::get('/filtreCategorie/{id}', [BlogPostController::class, 'filtreCategorie']);
 Route::get('/filtreTag/{id}', [BlogPostController::class, 'filtreTag']);
