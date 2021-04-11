@@ -7,14 +7,11 @@ use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $tag=Tag::all();
+        return view('backend/pages/blog/blogTag',compact('tag',));
+       
     }
 
     /**
@@ -27,15 +24,16 @@ class TagController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $validation = $request->validate([
+            "tag" => 'required',
+          
+        ]);
+        $store = new Tag;
+        $store->tag = $request->tag;
+        $store->save();
+        return redirect()->back()->with('status', "Ajout confirme!");
     }
 
     /**
@@ -72,14 +70,10 @@ class TagController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Tag $tag)
+    public function destroy($id)
     {
-        //
+        $destroy = Tag::find($id);
+        $destroy->delete();
+        return redirect()->back()->with('delete', "Delet confirme!");
     }
 }

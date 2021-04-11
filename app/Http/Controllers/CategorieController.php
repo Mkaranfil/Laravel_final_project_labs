@@ -7,14 +7,11 @@ use Illuminate\Http\Request;
 
 class CategorieController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $categorie=Categorie::all();
+        return view('backend/pages/blog/blogCategorie',compact('categorie',));
+       
     }
 
     /**
@@ -27,15 +24,16 @@ class CategorieController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $validation = $request->validate([
+            "nom" => 'required',
+          
+        ]);
+        $store = new Categorie;
+        $store->nom = $request->nom;
+        $store->save();
+        return redirect()->back()->with('status', "Ajout confirme!");
     }
 
     /**
@@ -72,14 +70,10 @@ class CategorieController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Categorie  $categorie
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Categorie $categorie)
+    public function destroy($id)
     {
-        //
+        $destroy = Categorie::find($id);
+        $destroy->delete();
+        return redirect()->back()->with('delete', "Delet confirme!");
     }
 }

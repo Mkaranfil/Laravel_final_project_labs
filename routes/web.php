@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogPostController;
 use App\Http\Controllers\CarouselController;
+use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\HomeTitreController;
 use App\Http\Controllers\HomeVideoController;
 use App\Http\Controllers\LogoController;
@@ -9,11 +10,13 @@ use App\Http\Controllers\LogoTitreController;
 use App\Http\Controllers\MembreController;
 use App\Http\Controllers\NavbarController;
 use App\Http\Controllers\ParaHomeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\PosteController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ServiceCardController;
 use App\Http\Controllers\ServiceListeController;
 use App\Http\Controllers\ServiceTitreController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\TestimonialController;
 use App\Models\Carousel;
 use App\Models\Categorie;
@@ -134,6 +137,9 @@ Route::resource('poste', PosteController::class);
 Route::resource('role', RoleController::class);
 Route::get('/valider/{id}', [MembreController::class,'valider']);
 // -----BLOG----
+Route::resource('blogCategorie', CategorieController::class);
+Route::resource('blogTag', TagController::class);
+Route::resource('blogArticle', PostController::class);
 Route::get('/search', [BlogPostController::class, 'search']);
 Route::get('/filtreCategorie/{id}', [BlogPostController::class, 'filtreCategorie']);
 Route::get('/filtreTag/{id}', [BlogPostController::class, 'filtreTag']);

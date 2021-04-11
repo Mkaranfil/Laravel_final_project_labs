@@ -132,7 +132,7 @@ class BlogPostController extends Controller
           $categorie=Categorie::all();
         
 
-          $post=Post::where('categorie_id',$id)->paginate(2);
+          $post=Post::where('categorie_id',$id)->orderBy('id','DESC')->paginate(2);
 
 
           return view('frontend/pages/blog', compact('logo', 'navbar', 'categorie', 'tag', 'post','logoTitre',));

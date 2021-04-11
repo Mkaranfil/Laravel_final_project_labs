@@ -33,7 +33,7 @@
 
                                         <a id="styleMeta" href="">2 Comments</a>
                                     </div>
-                                    <p>{{Str::limit($item->texte, 300)}}</p>
+                                    <p>{!!Str::limit($item->texte, 300)!!}</p>
                                     <a href="/blog-post" class="read-more ">Read More</a>
                                 </div>
                             </div>
