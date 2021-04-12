@@ -51,6 +51,7 @@ class PostController extends Controller
             "titre" => 'required',
             "texte" => 'required',
             "categorie_id" => 'required',
+            "tag" =>'required',
         ]);
         $store2 = new BlogPicture;
         Storage::put('/public/img/blog', $request->src);
@@ -71,16 +72,11 @@ class PostController extends Controller
             $store->tags()->attach($item, ['post_id' => $store->id]);
         }
          // dd($store->id);
-        return redirect('/posts');
+        return redirect()->back()->with('status','ajout validee!');
     }
    
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show($id)
     {
         // -----Template-----
@@ -92,6 +88,13 @@ class PostController extends Controller
         $categorie=Categorie::all();
         $post=Post::find($id);
         return view('frontend/pages/blog-post',compact('navbar','logo','logoTitre','tag','categorie','post'));
+    }
+
+    public function showBo ($id){
+        $show=Post::find($id);
+        $tag=Tag::all();
+        return view('backend/pages/show/blog/blogShow',compact('show','tag'));
+
     }
 
     public function edit($id)

@@ -62,8 +62,8 @@
             </div>
             <div class="mt-4">
                 <label class="mr-3" for="titre">Texte:</label> <br>
-                <textarea name="texte" id="" cols="120" rows="15">{!! old('texte') ? old('texte') : $edit->texte !!}</textarea>
-                <span>astuce HTML: Ajoutez le code {{$br}} pour retourner a la ligne</span>
+                <textarea name="texte" id="" cols="120" rows="15">{!! old('texte') ? old('texte') : $edit->texte !!}</textarea><br>
+                <span>HTML: Ajoutez le code {{$br}} pour retourner a la ligne</span>
             </div>
             
             <div class="d-flex justify-content-center mt-4">
