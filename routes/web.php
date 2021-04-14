@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogPostController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\HomeTitreController;
 use App\Http\Controllers\HomeVideoController;
 use App\Http\Controllers\LogoController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\TestimonialController;
 use App\Models\Carousel;
 use App\Models\Categorie;
+use App\Models\Commentaire;
 use App\Models\HomeTitre;
 use App\Models\HomeVideo;
 use App\Models\Logo;
@@ -86,20 +88,25 @@ Route::get('/blog', function () {
     // -----Blog-----
     $tag=Tag::all();
     $categorie=Categorie::all();
-    $post=Post::orderBy('id','DESC')->paginate(2);
-    return view('frontend/pages/blog',compact('navbar','logo','logoTitre','tag','categorie','post'));
+    $post=Post::orderBy('id','DESC')->paginate(3);
+     // -----Commentaire-----
+     $postAll=Post::all();
+     $comsValide=Commentaire::where('check',1)->get();
+    //  $coms=$comsValide->where('post_id',$postAll->id);
+
+    return view('frontend/pages/blog',compact('navbar','logo','logoTitre','tag','categorie','post','comsValide'));
 });
-Route::get('/blog-post', function () {
-     // -----Template-----
-     $navbar= Navbar::all();
-     $logo=Logo::all();
-     $logoTitre=LogoTitre::all();
-     // -----Blog-----
-    $tag=Tag::all();
-    $categorie=Categorie::all();
-    $post=Post::all();
-    return view('frontend/pages/blog-post',compact('navbar','logo','logoTitre','tag','categorie','post'));
-});
+// Route::get('/blog-post', function () {
+//      // -----Template-----
+//      $navbar= Navbar::all();
+//      $logo=Logo::all();
+//      $logoTitre=LogoTitre::all();
+//      // -----Blog-----
+//     $tag=Tag::all();
+//     $categorie=Categorie::all();
+//     $post=Post::all();
+//     return view('frontend/pages/blog-post',compact('navbar','logo','logoTitre','tag','categorie','post'));
+// });
 Route::get('/contact', function () {
      // -----Template-----
      $navbar= Navbar::all();
@@ -148,3 +155,6 @@ Route::get('/valider/{id}', [PostController::class,'valider']);
 Route::get('/search', [BlogPostController::class, 'search']);
 Route::get('/filtreCategorie/{id}', [BlogPostController::class, 'filtreCategorie']);
 Route::get('/filtreTag/{id}', [BlogPostController::class, 'filtreTag']);
+// -----COMMENTAIRE----
+Route::resource('/commentaire', CommentaireController::class);
+Route::get('/validerComs/{id}', [CommentaireController::class,'validerComs']);

@@ -29,7 +29,6 @@
             <th scope="col"></th>
             <th scope="col"></th>
             <th scope="col"></th>
-            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -37,7 +36,7 @@
           <tr>
               <th scope="row">{{$item->id}}</th>
               <td>{{$item->nom}} {{$item->prenom}}</td>
-              <td>{{$item->roles->role}}<td>
+              <td>{{$item->roles->role}}</td>
               <td>
                 <a href="membre/{{ $item->id }}/edit" class="btn btn-warning mb-2">Edit</a>
               </td>
@@ -68,7 +67,6 @@
             <th scope="col"></th>
             <th scope="col"></th>
             <th scope="col"></th>
-            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -76,7 +74,7 @@
           <tr>
               <th scope="row">{{$item->id}}</th>
               <td>{{$item->nom}} {{$item->prenom}}</td>
-              <td>{{$item->postes->poste}}<td>
+              <td>{{$item->postes->poste}}</td>
               <td>
                 <a href="membre/{{ $item->id }}/edit" class="btn btn-warning mb-2">Edit</a>
               </td>

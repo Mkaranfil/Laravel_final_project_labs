@@ -25,6 +25,9 @@ class UserPictureSeeder extends Seeder
                 [
                     'src' => "3.jpg",
                 ],
+                [
+                    'src' => "4.jpg",
+                ],
               
             ]
         );

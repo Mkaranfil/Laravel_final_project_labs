@@ -27,8 +27,8 @@ class Post extends Model
         return $this->belongsTo(BlogPicture::class,'picture_id');
     }
 
-    // public function comments()
-    // {
-    //     return $this->hasMany(Comment::class, 'post_id');
-    // }
+    public function commentaires()
+    {
+        return $this->hasMany(Comment::class, 'post_id');
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BlogPicture;
 use App\Models\Categorie;
+use App\Models\Commentaire;
 use App\Models\Logo;
 use App\Models\LogoTitre;
 use App\Models\Navbar;
@@ -87,7 +88,12 @@ class PostController extends Controller
         $tag=Tag::all();
         $categorie=Categorie::all();
         $post=Post::find($id);
-        return view('frontend/pages/blog-post',compact('navbar','logo','logoTitre','tag','categorie','post'));
+        // -----Commentaire-----
+        $postAll=Post::find($id);
+        $comsValide=Commentaire::where('check',1)->get();
+        $coms=$comsValide->where('post_id',$postAll->id);
+
+        return view('frontend/pages/blog-post',compact('navbar','logo','logoTitre','tag','categorie','post','coms'));
     }
 
     public function showBo ($id){

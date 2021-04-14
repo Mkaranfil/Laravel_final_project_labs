@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
 use App\Models\Categorie;
+use App\Models\Commentaire;
 use App\Models\Logo;
 use App\Models\LogoTitre;
 use App\Models\Navbar;
@@ -105,6 +106,7 @@ class BlogPostController extends Controller
             $search = $request->input('search');
             $post = Post::query()->where('titre', 'LIKE', "%{$search}%")->paginate(2);
             // ->orWhere('text', 'LIKE', "%{$search}%")
+      
 
 
         // if ($post->isEmpty()) 

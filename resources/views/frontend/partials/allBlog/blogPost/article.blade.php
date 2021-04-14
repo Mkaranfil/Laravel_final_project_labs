@@ -3,6 +3,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-sm-7 blog-posts">
+                <div>
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                </div>
                 <!-- Single Post -->
                 <div class="single-post">
                     <div class="post-thumbnail">
@@ -23,7 +30,7 @@
                                                 <a href="/filtreTag/{{$tagg->id}}">, {{$tagg->tag}}</a>
                                             @endif   
                             @endforeach
-                            <a id="styleMeta" href="">2 Comments</a>
+                            <a id="styleMeta" href="">{{count($coms)}} Comments</a>
                         </div>
                         <p>{!! $post->texte !!}</p>
                     </div>
@@ -39,43 +46,52 @@
                     </div>
                     <!-- Post Comments -->
                     <div class="comments">
-                        <h2>Comments (2)</h2>
+                        <h2>Comments </h2>
+                        @if (count($coms) != 0)
                         <ul class="comment-list">
-                            <li>
-                                <div class="avatar">
-                                    <img src="img/avatar/01.jpg" alt="">
-                                </div>
-                                <div class="commetn-text">
-                                    <h3>Michael Smith | 03 nov, 2017 | Reply</h3>
-                                    <p>Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. </p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="avatar">
-                                    <img src="img/avatar/02.jpg" alt="">
-                                </div>
-                                <div class="commetn-text">
-                                    <h3>Michael Smith | 03 nov, 2017 | Reply</h3>
-                                    <p>Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. </p>
-                                </div>
-                            </li>
+                            @foreach ($coms as $item)
+                                <li>
+                                    <div class="avatar mt-2">
+                                        <img  src="{{asset('storage/img/users/'.$item->user_pictures->src)}}"alt="">
+                                    </div>
+                                    <div class="commetn-text">
+                                        <h3>{{$item->nom}} | {{$item->created_at->format('d M, Y')}} </h3>
+                                        <p>{{$item->commentaire}} </p>
+                                    </div>
+                                </li>  
+                            @endforeach
                         </ul>
+                        @else
+				            <p>Il n'y a pas encore de commentaire pour cet article.. </p>
+			            @endif
                     </div>
                     <!-- Commert Form -->
                     <div class="row">
                         <div class="col-md-9 comment-from">
                             <h2>Leave a comment</h2>
-                            <form class="form-class">
+                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                            <form class="form-class" action="/commentaire", method="POST">
+                                @csrf
                                 <div class="row">
+                                @if (!Auth::check())
                                     <div class="col-sm-6">
-                                        <input type="text" name="name" placeholder="Your name">
+                                        <input type="text" name="nom" placeholder="Votre nom" value="{{old('nom')}}">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" name="email" placeholder="Your email">
+                                        <input type="text" name="email" placeholder="votre email" value="{{old('email')}}">
                                     </div>
+                                @endif
                                     <div class="col-sm-12">
-                                        <input type="text" name="subject" placeholder="Subject">
-                                        <textarea name="message" placeholder="Message"></textarea>
+                                        {{-- <input type="commentaire" name="subject" placeholder="Subject"> --}}
+                                        <textarea name="commentaire" placeholder="Message">{{old('commentaire')}}</textarea>
                                         <button class="site-btn">send</button>
                                     </div>
                                 </div>

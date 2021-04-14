@@ -30,8 +30,8 @@
                                                 <a href="/filtreTag/{{$tagg->id}}">, {{$tagg->tag}}</a>
                                             @endif   
                                         @endforeach
-
-                                        <a id="styleMeta" href="">2 Comments</a>
+                                        
+                                        <a id="styleMeta" href="/blogArticle/{{$item->id}}">{{count($comsValide->where('post_id', $item->id))}} Comments</a>
                                     </div>
                                     <p>{!!Str::limit($item->texte, 300)!!}</p>
                                     <a href="/blogArticle/{{$item->id}}" class="read-more ">Read More</a>

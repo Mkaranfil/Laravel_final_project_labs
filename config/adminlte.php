@@ -370,9 +370,9 @@ return [
                     'url'  => '/blogArticle',
                 ],
                 [
-                    'text' => 'Nouvel article',
+                    'text' => 'Commentaire',
                     'icon_color' => 'yellow',
-                    'url'  => '/blogArticle',
+                    'url'  => '/commentaire',
                 ],
             
             ],
