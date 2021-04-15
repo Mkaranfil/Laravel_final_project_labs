@@ -4,6 +4,7 @@ use App\Http\Controllers\BlogPostController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CommentaireController;
+use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HomeTitreController;
 use App\Http\Controllers\HomeVideoController;
 use App\Http\Controllers\LogoController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\TestimonialController;
 use App\Models\Carousel;
 use App\Models\Categorie;
 use App\Models\Commentaire;
+use App\Models\Footer;
 use App\Models\HomeTitre;
 use App\Models\HomeVideo;
 use App\Models\Logo;
@@ -57,6 +59,7 @@ Route::get('/', function () {
     $navbar= Navbar::all();
     $logo=Logo::all();
     $logoTitre=LogoTitre::all();
+    $footer=Footer::all();
     // // -----HOME-----
     $carousel=Carousel::all();
     $homeTitre=HomeTitre::all();
@@ -65,26 +68,28 @@ Route::get('/', function () {
     $testimonial=Testimonial::orderBy('id','DESC')->get()->take(6);
     $serviceListe=ServiceListe::all();
     $users=User::all()->where('check','==','1');
-    return view('frontend/pages/home',compact('navbar','logo','logoTitre','carousel','homeTitre','para','video','testimonial','serviceListe','users'));
+    return view('frontend/pages/home',compact('navbar','logo','logoTitre','carousel','homeTitre','para','video','testimonial','serviceListe','users','footer'));
 });
 Route::get('/services', function () {
     // -----Template-----
     $navbar= Navbar::all();
     $logo=Logo::all();
     $logoTitre=LogoTitre::all();
+    $footer=Footer::all();
     // -----SERVICES-----
     $serviceTitre=ServiceTitre::all();
     $serviceListe=ServiceListe::orderBy('id','DESC')->paginate(9);
     $serviceSmart=ServiceListe::orderBy('id','DESC')->get()->take(6);
     // $pagination= DB::table('service_listes')->orderBy('id','desc')->paginate(9);
     $serviceCarte=ServiceCard::orderBy('id','DESC')->get()->take(3); 
-    return view('frontend/pages/services', compact('navbar','logo','logoTitre','serviceTitre','serviceListe','serviceSmart','serviceCarte'));
+    return view('frontend/pages/services', compact('navbar','logo','logoTitre','serviceTitre','serviceListe','serviceSmart','serviceCarte','footer'));
 });
 Route::get('/blog', function () {
      // -----Template-----
      $navbar= Navbar::all();
      $logo=Logo::all();
      $logoTitre=LogoTitre::all();
+     $footer=Footer::all();
     // -----Blog-----
     $tag=Tag::all();
     $categorie=Categorie::all();
@@ -94,7 +99,7 @@ Route::get('/blog', function () {
      $comsValide=Commentaire::where('check',1)->get();
     //  $coms=$comsValide->where('post_id',$postAll->id);
 
-    return view('frontend/pages/blog',compact('navbar','logo','logoTitre','tag','categorie','post','comsValide'));
+    return view('frontend/pages/blog',compact('navbar','logo','logoTitre','tag','categorie','post','comsValide','footer'));
 });
 // Route::get('/blog-post', function () {
 //      // -----Template-----
@@ -112,7 +117,8 @@ Route::get('/contact', function () {
      $navbar= Navbar::all();
      $logo=Logo::all();
      $logoTitre=LogoTitre::all();
-    return view('frontend/pages/contact',compact('navbar','logo','logoTitre',));
+     $footer=Footer::all();
+    return view('frontend/pages/contact',compact('navbar','logo','logoTitre','footer'));
 });
 
 Route::fallback(function () {
@@ -158,3 +164,5 @@ Route::get('/filtreTag/{id}', [BlogPostController::class, 'filtreTag']);
 // -----COMMENTAIRE----
 Route::resource('/commentaire', CommentaireController::class);
 Route::get('/validerComs/{id}', [CommentaireController::class,'validerComs']);
+// -----FOOTER----
+Route::resource('/footer', FooterController::class);

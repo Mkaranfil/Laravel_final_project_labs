@@ -107,13 +107,16 @@ class BlogPostController extends Controller
             $post = Post::query()->where('titre', 'LIKE', "%{$search}%")->paginate(2);
             // ->orWhere('text', 'LIKE', "%{$search}%")
       
+         // -----Commentaire-----
+            $postAll=Post::all();
+            $comsValide=Commentaire::where('check',1)->get();
 
 
         // if ($post->isEmpty()) 
         // if ($search==null){
             // return redirect()->back()->with('search','Veuillez introduire votre recherche');
         // } else {
-            return view('frontend/pages/blog', compact('logo', 'navbar', 'categorie', 'tag', 'post','logoTitre',));
+            return view('frontend/pages/blog', compact('logo', 'navbar', 'categorie', 'tag', 'post','logoTitre','comsValide'));
         // }
     }
 
@@ -127,17 +130,17 @@ class BlogPostController extends Controller
         // -----Newsletter-----
 
 
-        // -----COMMENTAIRE-----
+        // -----Commentaire-----
+        $postAll=Post::all();
+        $comsValide=Commentaire::where('check',1)->get();
       
         // -----BLOG-----
           $tag=Tag::all();
           $categorie=Categorie::all();
-        
-
           $post=Post::where('categorie_id',$id)->orderBy('id','DESC')->paginate(2);
 
 
-          return view('frontend/pages/blog', compact('logo', 'navbar', 'categorie', 'tag', 'post','logoTitre',));
+          return view('frontend/pages/blog', compact('logo', 'navbar', 'categorie', 'tag', 'post','logoTitre','comsValide'));
        
     }
     public function filtreTag($id){
@@ -150,27 +153,29 @@ class BlogPostController extends Controller
         // -----Newsletter-----
 
 
-        // -----COMMENTAIRE-----
-      
-        // -----BLOG-----
-          $tag=Tag::all();
-          $categorie=Categorie::all();
-          $allPost=Post::all();
-         
         
-
-          $post=[];
-          $array=[];
-          foreach ($allPost as $item) {
-              $array =$item->tags->pluck('id')->toArray();
-              if(in_array($id,$array)){
-                  array_push($post,$item);
-              }
-              unset($array);
-          }
-
-
-          return view('frontend/pages/blog', compact('logo', 'navbar', 'categorie', 'tag', 'post','logoTitre',));
+        // -----BLOG-----
+        $tag=Tag::all();
+        $categorie=Categorie::all();
+        $allPost=Post::all();
+        
+        
+        
+        $post=[];
+        foreach ($allPost as $item) {
+            $array =$item->tags->pluck('id')->toArray();
+            if(in_array($id,$array)){
+                array_push($post,$item);
+            }
+            unset($array);
+        }
+       
+        
+        // -----Commentaire-----
+        $postAll=Post::all();
+        $comsValide=Commentaire::where('check',1)->get();
+        
+          return view('frontend/pages/blog', compact('logo', 'navbar', 'categorie', 'tag', 'post','logoTitre','comsValide'));
        
     }
 

@@ -9,7 +9,7 @@
                         <h1>Aucun artcile n'a ete trouve</h1>
                     </div>
                 @else
-                    @foreach ($post->where('check',1) as $item)
+                    @foreach ($post as $item)
                         <div class="post-item">
                                 <div class="post-thumbnail ">
                                     <img src="{{asset('storage/img/blog/'.$item->blog_pictures->src)}}" alt="">

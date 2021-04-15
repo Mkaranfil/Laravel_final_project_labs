@@ -42,6 +42,8 @@ class DatabaseSeeder extends Seeder
             TagSeeder::class,
             CategorieSeeder::class,
             BlogPictureSeeder::class,
+            // footer
+            FooterSeeder::class,
            
         ]);
         Testimonial::factory()->count(10)->create();

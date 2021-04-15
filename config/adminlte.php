@@ -377,11 +377,24 @@ return [
             
             ],
         ],
+        [
+            'text'    => 'Contact',
+            'icon_color' => 'cyan',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'HS',
+                    'icon_color' => 'yellow',
+                    'url'  => '#',
+                ],
+            
+            ],
+        ],
        
         [
-            'text'       => 'Contact',
+            'text'       => 'Footer',
             'icon_color' => 'red',
-            'url'        => '#',
+            'url'        => '/footer',
         ],
         
     ],
