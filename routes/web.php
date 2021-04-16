@@ -15,6 +15,7 @@ use App\Http\Controllers\ParaHomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PosteController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SelfUserController;
 use App\Http\Controllers\ServiceCardController;
 use App\Http\Controllers\ServiceListeController;
 use App\Http\Controllers\ServiceTitreController;
@@ -152,6 +153,8 @@ Route::resource('membre', MembreController::class);
 Route::resource('poste', PosteController::class);
 Route::resource('role', RoleController::class);
 Route::get('/valider/{id}', [MembreController::class,'valider']);
+// -----SelfUser----
+Route::resource('/selfUser', SelfUserController::class);
 // -----BLOG----
 Route::resource('blogCategorie', CategorieController::class);
 Route::resource('blogTag', TagController::class);

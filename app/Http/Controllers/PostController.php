@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BlogPicture;
 use App\Models\Categorie;
 use App\Models\Commentaire;
+use App\Models\Footer;
 use App\Models\Logo;
 use App\Models\LogoTitre;
 use App\Models\Navbar;
@@ -22,8 +23,9 @@ class PostController extends Controller
         $articleNonValide=Post::where('check',0)->get();
         $categorie=Categorie::all();
         $tag=Tag::all();
+        $footer=Footer::all();
         $br="<br>";
-        return view('backend/pages/blog/blogArticle',compact('article','categorie','tag','br','articleNonValide'));
+        return view('backend/pages/blog/blogArticle',compact('article','categorie','tag','br','articleNonValide','footer'));
     }
 
     public function valider($id)
@@ -84,6 +86,8 @@ class PostController extends Controller
         $navbar= Navbar::all();
         $logo=Logo::all();
         $logoTitre=LogoTitre::all();
+        $footer=Footer::all();
+
         // -----Blog-----
         $tag=Tag::all();
         $categorie=Categorie::all();
@@ -93,7 +97,7 @@ class PostController extends Controller
         $comsValide=Commentaire::where('check',1)->get();
         $coms=$comsValide->where('post_id',$postAll->id);
 
-        return view('frontend/pages/blog-post',compact('navbar','logo','logoTitre','tag','categorie','post','coms'));
+        return view('frontend/pages/blog-post',compact('navbar','logo','logoTitre','tag','categorie','post','coms','footer'));
     }
 
     public function showBo ($id){

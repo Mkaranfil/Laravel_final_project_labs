@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BlogPost;
 use App\Models\Categorie;
 use App\Models\Commentaire;
+use App\Models\Footer;
 use App\Models\Logo;
 use App\Models\LogoTitre;
 use App\Models\Navbar;
@@ -96,6 +97,7 @@ class BlogPostController extends Controller
             $navbar=Navbar::all();
             $logo=Logo::all();
             $logoTitre=LogoTitre::all();
+            $footer=Footer::all();
          // -----Newsletter-----
         
          // -----BLOG-----
@@ -116,7 +118,7 @@ class BlogPostController extends Controller
         // if ($search==null){
             // return redirect()->back()->with('search','Veuillez introduire votre recherche');
         // } else {
-            return view('frontend/pages/blog', compact('logo', 'navbar', 'categorie', 'tag', 'post','logoTitre','comsValide'));
+            return view('frontend/pages/blog', compact('logo', 'navbar', 'categorie', 'tag', 'post','logoTitre','comsValide','footer'));
         // }
     }
 
@@ -126,6 +128,7 @@ class BlogPostController extends Controller
           $navbar=Navbar::all();
           $logo=Logo::all();
           $logoTitre=LogoTitre::all();
+          $footer=Footer::all();
     
         // -----Newsletter-----
 
@@ -140,7 +143,7 @@ class BlogPostController extends Controller
           $post=Post::where('categorie_id',$id)->orderBy('id','DESC')->paginate(2);
 
 
-          return view('frontend/pages/blog', compact('logo', 'navbar', 'categorie', 'tag', 'post','logoTitre','comsValide'));
+          return view('frontend/pages/blog', compact('logo', 'navbar', 'categorie', 'tag', 'post','logoTitre','comsValide','footer'));
        
     }
     public function filtreTag($id){
@@ -149,6 +152,7 @@ class BlogPostController extends Controller
           $navbar=Navbar::all();
           $logo=Logo::all();
           $logoTitre=LogoTitre::all();
+          $footer=Footer::all();
     
         // -----Newsletter-----
 
@@ -175,7 +179,7 @@ class BlogPostController extends Controller
         $postAll=Post::all();
         $comsValide=Commentaire::where('check',1)->get();
         
-          return view('frontend/pages/blog', compact('logo', 'navbar', 'categorie', 'tag', 'post','logoTitre','comsValide'));
+          return view('frontend/pages/blog', compact('logo', 'navbar', 'categorie', 'tag', 'post','logoTitre','comsValide','footer'));
        
     }
 
