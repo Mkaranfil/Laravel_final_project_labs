@@ -11,9 +11,11 @@
                     <p>{{$item->texte}}</p>   
                 @endforeach
                 <h3 class="mt60">Main Office</h3>
-                <p class="con-item">C/ Libertad, 34 <br> 05200 Arévalo </p>
-                <p class="con-item">0034 37483 2445 322</p>
-                <p class="con-item">hello@company.com</p>
+                @foreach ($contactAdresse as $item)
+                <p class="con-item">{{$item->rue}},{{$item->numero}} <br> {{$item->code_postale}} {{$item->commune}} </p>
+                <p class="con-item">{{$item->tel}}</p>
+                <p class="con-item">{{$item->email}}</p>
+                @endforeach
             </div>
             <!-- contact form -->
             <div class="col-md-6 col-pull">

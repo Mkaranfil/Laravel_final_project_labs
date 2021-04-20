@@ -4,6 +4,7 @@ use App\Http\Controllers\BlogPostController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CommentaireController;
+use App\Http\Controllers\ContactAdresseController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HomeTitreController;
@@ -26,6 +27,7 @@ use App\Http\Controllers\TestimonialController;
 use App\Models\Carousel;
 use App\Models\Categorie;
 use App\Models\Commentaire;
+use App\Models\ContactAdresse;
 use App\Models\ContactUs;
 use App\Models\Footer;
 use App\Models\HomeTitre;
@@ -74,7 +76,8 @@ Route::get('/', function () {
     $users=User::all()->where('check','==','1');
     // -----CONTACT-----
     $contactUs=ContactUs::all();
-    return view('frontend/pages/home',compact('navbar','logo','logoTitre','carousel','homeTitre','para','video','testimonial','serviceListe','users','footer','contactUs'));
+    $contactAdresse=ContactAdresse::all();
+    return view('frontend/pages/home',compact('navbar','logo','logoTitre','carousel','homeTitre','para','video','testimonial','serviceListe','users','footer','contactUs','contactAdresse'));
 });
 Route::get('/services', function () {
     // -----Template-----
@@ -90,7 +93,8 @@ Route::get('/services', function () {
     $serviceCarte=ServiceCard::orderBy('id','DESC')->get()->take(3);
     // -----CONTACT-----
     $contactUs=ContactUs::all();
-    return view('frontend/pages/services', compact('navbar','logo','logoTitre','serviceTitre','serviceListe','serviceSmart','serviceCarte','footer','contactUs'));
+    $contactAdresse=ContactAdresse::all();
+    return view('frontend/pages/services', compact('navbar','logo','logoTitre','serviceTitre','serviceListe','serviceSmart','serviceCarte','footer','contactUs','contactAdresse'));
 });
 Route::get('/blog', function () {
      // -----Template-----
@@ -129,7 +133,8 @@ Route::get('/contact', function () {
      $footer=Footer::all();
     // -----CONTACT-----
     $contactUs=ContactUs::all();
-    return view('frontend/pages/contact',compact('navbar','logo','logoTitre','footer','contactUs'));
+    $contactAdresse=ContactAdresse::all();
+    return view('frontend/pages/contact',compact('navbar','logo','logoTitre','footer','contactUs','contactAdresse'));
 });
 
 Route::fallback(function () {
@@ -183,4 +188,5 @@ Route::resource('/footer', FooterController::class);
 Route::resource('/newsletterMail', NewsletterMailController::class);
 // -----CONTACT----
 Route::resource('/contactUs', ContactUsController::class);
+Route::resource('/contactAdresse',ContactAdresseController::class);
 

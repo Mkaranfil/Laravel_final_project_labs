@@ -50,27 +50,22 @@ class ContactUsController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\ContactUs  $contactUs
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ContactUs $contactUs)
+    public function edit($id)
     {
-        //
+        $edit = ContactUs::find($id);
+        return view('backend/pages/edit/contact/contactUsEdit',compact('edit'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ContactUs  $contactUs
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ContactUs $contactUs)
+   
+    public function update(Request $request, $id)
     {
-        //
+        $validation = $request->validate([
+            "texte" => 'required',
+        ]);
+        $update = ContactUs::find($id);
+        $update->texte = $request->texte;
+        $update->save();
+        return redirect()->back()->with('status', "Edit confirme!");
     }
 
     public function destroy($id)

@@ -46,6 +46,7 @@ class DatabaseSeeder extends Seeder
             FooterSeeder::class,
             // Conatact
             ContactUsSeeder::class,
+            ContactAdresseSeeder::class,
            
         ]);
         Testimonial::factory()->count(10)->create();

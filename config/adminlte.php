@@ -387,6 +387,11 @@ return [
                     'icon_color' => 'yellow',
                     'url'  => '/contactUs',
                 ],
+                [
+                    'text' => 'Contact Adresse',
+                    'icon_color' => 'yellow',
+                    'url'  => '/contactAdresse',
+                ],
             
             ],
         ],
