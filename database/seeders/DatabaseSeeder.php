@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-
+use App\Models\ContactUs;
 use App\Models\Post;
 use App\Models\ServiceCard;
 use App\Models\ServiceListe;
@@ -44,6 +44,8 @@ class DatabaseSeeder extends Seeder
             BlogPictureSeeder::class,
             // footer
             FooterSeeder::class,
+            // Conatact
+            ContactUsSeeder::class,
            
         ]);
         Testimonial::factory()->count(10)->create();

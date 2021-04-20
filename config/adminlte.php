@@ -383,9 +383,9 @@ return [
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'HS',
+                    'text' => 'Contact Us',
                     'icon_color' => 'yellow',
-                    'url'  => '#',
+                    'url'  => '/contactUs',
                 ],
             
             ],
