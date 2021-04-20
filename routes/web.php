@@ -11,6 +11,7 @@ use App\Http\Controllers\LogoController;
 use App\Http\Controllers\LogoTitreController;
 use App\Http\Controllers\MembreController;
 use App\Http\Controllers\NavbarController;
+use App\Http\Controllers\NewsletterMailController;
 use App\Http\Controllers\ParaHomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PosteController;
@@ -169,3 +170,6 @@ Route::resource('/commentaire', CommentaireController::class);
 Route::get('/validerComs/{id}', [CommentaireController::class,'validerComs']);
 // -----FOOTER----
 Route::resource('/footer', FooterController::class);
+// -----NEWSLETTER----
+Route::resource('/newsletterMail', NewsletterMailController::class);
+

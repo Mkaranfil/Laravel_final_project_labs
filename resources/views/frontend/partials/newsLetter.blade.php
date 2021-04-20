@@ -1,5 +1,23 @@
 <!-- newsletter section -->
 <div class="newsletter-section spad">
+    <div>
+        @if (session('status'))
+            <div class="alert alert-info" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
+    </div>
+    <div>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-md-3">
@@ -7,9 +25,10 @@
             </div>
             <div class="col-md-9">
                 <!-- newsletter form -->
-                <form class="nl-form">
-                    <input type="text" placeholder="Your e-mail here">
-                    <button class="site-btn btn-2">Newsletter</button>
+                <form action="/newsletterMail" method="POST" class="nl-form">
+                    @csrf
+                    <input type="text" name="email" placeholder="Votre email ici">
+                    <button type="submit" class="site-btn btn-2">Envoyer</button>
                 </form>
             </div>
         </div>

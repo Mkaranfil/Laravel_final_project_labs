@@ -33,9 +33,10 @@ class MembreController extends Controller
     public function valider($id)
     {
         $valider = User::find($id);
+        $emailTo = $valider->email; 
         $valider->check = 1;
         $valider->save();
-        Mail::to('startmk2020@gmail.com')->send(new MailSend ($valider));
+        Mail::to($emailTo)->send(new MailSend ($valider));
         return redirect()->back()->with('status','Membre accepte!');
     }
 

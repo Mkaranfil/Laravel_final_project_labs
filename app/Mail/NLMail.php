@@ -7,21 +7,19 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class MailSend extends Mailable
+class NLMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $info;
-  
-
+    public $email;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($valider)
+    public function __construct($lastMail)
     {
-        $this->info = $valider; 
+        $this->email = $lastMail->email; 
     }
 
     /**
@@ -31,6 +29,6 @@ class MailSend extends Mailable
      */
     public function build()
     {
-        return $this->from('LabsCompany@gmail.com')->subject('Bienvenue '.$this->info->prenom.' !')->view('mail/registerValidationMail')->with(['info'=>$this->info]);
+        return $this->from('LabsCompany@gmail.com')->subject('Abonnement Newsletter !')->view('mail/newsletterMail')->with(['email'=>$this->email]);
     }
 }

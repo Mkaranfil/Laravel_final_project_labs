@@ -7,6 +7,9 @@
     <title>Document</title>
 </head>
 <body>
+    <h1 style="color: blue">Newsletter LABS Company</h1>
+    <p>Merci pour votre inscription au Newsletter de LABS company</p>
+    <p>Votre email: {{$email}}</p>
     
 </body>
 </html>
