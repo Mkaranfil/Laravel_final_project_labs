@@ -70,7 +70,7 @@
                     @foreach ($poste as $item)
                         <option  value="{{$item->id}}" autofocus>{{$item->poste}}</option>
                     @endforeach
-                    {{-- @endforeach --}}
+                    {{-- @endforeach --}} 
                 </select>
             <div class="input-group-append">
                 <div class="input-group-text">

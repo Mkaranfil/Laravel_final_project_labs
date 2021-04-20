@@ -33,7 +33,6 @@ class PostController extends Controller
         $valider = Post::find($id);
         $valider->check = 1;
         $valider->save();
-        // Mail::to('tidoraa@gmail.com')->send(new SendRegister($user));
         return redirect()->back()->with('status','Article Valide!');
     }
 

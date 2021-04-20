@@ -160,7 +160,7 @@ Route::resource('blogCategorie', CategorieController::class);
 Route::resource('blogTag', TagController::class);
 Route::resource('blogArticle', PostController::class);
 Route::get('/showBo/{id}', [PostController::class,'showBo']);
-Route::get('/valider/{id}', [PostController::class,'valider']);
+Route::get('/validerPost/{id}', [PostController::class,'valider']);
 Route::get('/search', [BlogPostController::class, 'search']);
 Route::get('/filtreCategorie/{id}', [BlogPostController::class, 'filtreCategorie']);
 Route::get('/filtreTag/{id}', [BlogPostController::class, 'filtreTag']);

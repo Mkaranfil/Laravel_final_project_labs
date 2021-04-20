@@ -82,7 +82,7 @@
                             <a href="/showBo/{{ $item->id }}" class="btn btn-warning">SHOW</a>
                         </td>
                         <td>
-                            <form action="/valider/{{ $item->id }}">
+                            <form action="/validerPost/{{ $item->id }}">
                                 @csrf
                                 <button type="submit" class="btn btn-success">VALIDER</button>
                             </form>

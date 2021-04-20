@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MailSend;
 use App\Models\Membre;
 use App\Models\Poste;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\UserPicture;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class MembreController extends Controller
@@ -33,7 +35,7 @@ class MembreController extends Controller
         $valider = User::find($id);
         $valider->check = 1;
         $valider->save();
-        // Mail::to('tidoraa@gmail.com')->send(new SendRegister($user));
+        Mail::to('startmk2020@gmail.com')->send(new MailSend ($valider));
         return redirect()->back()->with('status','Membre accepte!');
     }
 
