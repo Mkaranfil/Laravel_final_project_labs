@@ -37,7 +37,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="href">Url</label>
-                    <p>AIDE: ce url serat accesible en clicant sur le texte 2</p>
+                    <p>AIDE: ce url serait accesible en clican sur le texte 2</p>
                     <input class="form-control"  type="text" name="url"value="{{old('url') ? old('url') : $edit->url}}" >
                 </div>
 

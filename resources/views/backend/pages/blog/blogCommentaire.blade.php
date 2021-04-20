@@ -28,6 +28,7 @@
             <th scope="col">Nom</th>
             <th scope="col">Article</th>
             <th scope="col">Commentaire</th>
+            <th scope="col">E-mail</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -41,6 +42,7 @@
               <td>{{$item->nom}}</td>
               <td>{{$item->posts->titre}}</td>
               <td>{{$item->commentaire}} </td>
+              <td>{{$item->email}} </td>
                 <td>
                     <form action="/commentaire/{{ $item->id }}" method="POST">
                         @csrf
@@ -65,7 +67,7 @@
             <th scope="col">Nom</th>
             <th scope="col">Article</th>
             <th scope="col">Commentaire</th>
-            <th scope="col"></th>
+            <th scope="col">E-mail</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -79,6 +81,7 @@
               <td>{{$item->nom}}</td>
               <td>{{$item->posts->titre}}</td>
               <td>{{$item->commentaire}} </td>
+              <td>{{$item->email}} </td>
               <td>
                 <form action="/validerComs/{{ $item->id }}">
                     @csrf
