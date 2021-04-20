@@ -5,6 +5,8 @@ use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\ContactAdresseController;
+use App\Http\Controllers\ContactFormulaireController;
+use App\Http\Controllers\ContactSubjectController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HomeTitreController;
@@ -28,6 +30,7 @@ use App\Models\Carousel;
 use App\Models\Categorie;
 use App\Models\Commentaire;
 use App\Models\ContactAdresse;
+use App\Models\ContactSubject;
 use App\Models\ContactUs;
 use App\Models\Footer;
 use App\Models\HomeTitre;
@@ -77,7 +80,8 @@ Route::get('/', function () {
     // -----CONTACT-----
     $contactUs=ContactUs::all();
     $contactAdresse=ContactAdresse::all();
-    return view('frontend/pages/home',compact('navbar','logo','logoTitre','carousel','homeTitre','para','video','testimonial','serviceListe','users','footer','contactUs','contactAdresse'));
+    $subject=ContactSubject::all();
+    return view('frontend/pages/home',compact('navbar','logo','logoTitre','carousel','homeTitre','para','video','testimonial','serviceListe','users','footer','contactUs','contactAdresse','subject'));
 });
 Route::get('/services', function () {
     // -----Template-----
@@ -94,7 +98,8 @@ Route::get('/services', function () {
     // -----CONTACT-----
     $contactUs=ContactUs::all();
     $contactAdresse=ContactAdresse::all();
-    return view('frontend/pages/services', compact('navbar','logo','logoTitre','serviceTitre','serviceListe','serviceSmart','serviceCarte','footer','contactUs','contactAdresse'));
+    $subject=ContactSubject::all();
+    return view('frontend/pages/services', compact('navbar','logo','logoTitre','serviceTitre','serviceListe','serviceSmart','serviceCarte','footer','contactUs','contactAdresse','subject'));
 });
 Route::get('/blog', function () {
      // -----Template-----
@@ -134,14 +139,13 @@ Route::get('/contact', function () {
     // -----CONTACT-----
     $contactUs=ContactUs::all();
     $contactAdresse=ContactAdresse::all();
-    return view('frontend/pages/contact',compact('navbar','logo','logoTitre','footer','contactUs','contactAdresse'));
+    $subject=ContactSubject::all();
+    return view('frontend/pages/contact',compact('navbar','logo','logoTitre','footer','contactUs','contactAdresse','subject'));
 });
 
 Route::fallback(function () {
     return redirect()->back();
 });
-
-
 
 Auth::routes();
 Route::get('/membresLabs', function() {
@@ -189,4 +193,6 @@ Route::resource('/newsletterMail', NewsletterMailController::class);
 // -----CONTACT----
 Route::resource('/contactUs', ContactUsController::class);
 Route::resource('/contactAdresse',ContactAdresseController::class);
+Route::resource('/contactSubject',ContactSubjectController::class);
+Route::resource('/contactFormulaire',ContactFormulaireController::class);
 

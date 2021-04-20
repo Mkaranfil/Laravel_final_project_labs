@@ -384,13 +384,18 @@ return [
             'submenu' => [
                 [
                     'text' => 'Contact Us',
-                    'icon_color' => 'yellow',
+                    'icon_color' => 'cyan',
                     'url'  => '/contactUs',
                 ],
                 [
                     'text' => 'Contact Adresse',
-                    'icon_color' => 'yellow',
+                    'icon_color' => 'cyan',
                     'url'  => '/contactAdresse',
+                ],
+                [
+                    'text' => 'Form subject',
+                    'icon_color' => 'cyan',
+                    'url'  => '/contactSubject',
                 ],
             
             ],
