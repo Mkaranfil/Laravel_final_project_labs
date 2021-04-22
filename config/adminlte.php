@@ -397,6 +397,11 @@ return [
                     'icon_color' => 'cyan',
                     'url'  => '/contactSubject',
                 ],
+                [
+                    'text' => 'Map',
+                    'icon_color' => 'cyan',
+                    'url'  => '/map',
+                ],
             
             ],
         ],

@@ -6,6 +6,7 @@ use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\ContactAdresseController;
 use App\Http\Controllers\ContactFormulaireController;
+use App\Http\Controllers\ContactMapController;
 use App\Http\Controllers\ContactSubjectController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\FooterController;
@@ -30,6 +31,7 @@ use App\Models\Carousel;
 use App\Models\Categorie;
 use App\Models\Commentaire;
 use App\Models\ContactAdresse;
+use App\Models\ContactMap;
 use App\Models\ContactSubject;
 use App\Models\ContactUs;
 use App\Models\Footer;
@@ -46,6 +48,7 @@ use App\Models\ServiceTitre;
 use App\Models\Tag;
 use App\Models\Testimonial;
 use App\Models\User;
+use Database\Seeders\ContactMapSeeder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -140,7 +143,8 @@ Route::get('/contact', function () {
     $contactUs=ContactUs::all();
     $contactAdresse=ContactAdresse::all();
     $subject=ContactSubject::all();
-    return view('frontend/pages/contact',compact('navbar','logo','logoTitre','footer','contactUs','contactAdresse','subject'));
+    $map=ContactMap::first();
+    return view('frontend/pages/contact',compact('navbar','logo','logoTitre','footer','contactUs','contactAdresse','subject','map'));
 });
 
 Route::fallback(function () {
@@ -195,4 +199,5 @@ Route::resource('/contactUs', ContactUsController::class);
 Route::resource('/contactAdresse',ContactAdresseController::class);
 Route::resource('/contactSubject',ContactSubjectController::class);
 Route::resource('/contactFormulaire',ContactFormulaireController::class);
+Route::resource('/map',ContactMapController::class);
 

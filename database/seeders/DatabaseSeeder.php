@@ -48,6 +48,7 @@ class DatabaseSeeder extends Seeder
             ContactUsSeeder::class,
             ContactAdresseSeeder::class,
             ContactSubjectSeeder::class,
+            ContactMapSeeder::class,
            
         ]);
         Testimonial::factory()->count(10)->create();
