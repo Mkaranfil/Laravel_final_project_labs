@@ -40,11 +40,12 @@
                 <form action="/contactFormulaire" method="POST" class="form-class" id="con_form">
                     @csrf
                     <div class="row">
+                        {{-- @if (!Auth::check()) --}}
                         <div class="col-sm-6">
-                            <input type="text" name="name" placeholder="votre nom">
+                            <input type="text" name="name" placeholder="votre nom" value="{{old('name')}}">
                         </div>
                         <div class="col-sm-6">
-                            <input type="text" name="email" placeholder="votre e-mail">
+                            <input type="text" name="email" placeholder="votre e-mail" value="{{old('email')}}">
                         </div>
                         <div class="col-sm-12">
                             {{-- <input type="text" name="subject" placeholder="Subject"> --}}

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactFormMail;
 use App\Models\ContactFormulaire;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ContactFormulaireController extends Controller
 {
@@ -30,8 +32,8 @@ class ContactFormulaireController extends Controller
     public function store(Request $request)
     {
         $validation = $request->validate([
-            "name" => 'required',
-            "email" => 'required|email',
+            // "name" => 'required',
+            // "email" => 'required',
             "subject_id" => 'required',
             "message" => 'required'
         ]);
@@ -43,8 +45,7 @@ class ContactFormulaireController extends Controller
         $store->message = $request->message;
         $store->save();
 
-        // $email = MailAdress::first();
-        // Mail::to($email)->send(new MailSend($request));
+        Mail::to('LabsCompany@gmail.com')->send(new ContactFormMail ($request));
         return redirect()->back()->with('status','Votre message a bien ete envoye');
     }
 
