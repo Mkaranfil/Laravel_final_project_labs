@@ -2,7 +2,8 @@
 <div class="services-section spad">
     <div class="container">
         <div class="section-title dark">
-            <h2>{{$serviceTitre[0]->titre}}</h2>
+            
+            <h2>{!! App\Helper\Color::green($serviceTitre[0]->titre)!!}</h2>
         </div>
         <div class="row">
             @foreach ($serviceListe as $item)

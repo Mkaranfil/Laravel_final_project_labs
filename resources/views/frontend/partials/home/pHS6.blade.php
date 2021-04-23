@@ -3,7 +3,7 @@
     <div class="overlay"></div>
     <div class="container">
         <div class="section-title">
-            <h2>{{ $homeTitre[3]->titre }}</h2>
+            <h2>{!! App\Helper\Color::green($homeTitre[3]->titre)!!}</h2>
         </div>
         <div class="row">
             @foreach ($users->where('poste_id', '!=', 1)->random(2) as $item)

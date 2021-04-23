@@ -2,7 +2,7 @@
 <div class="about-contant">
     <div class="container">
         <div class="section-title">
-            <h2>{{ $homeTitre[0]->titre }}</h2>
+            <h2>{!!App\Helper\Color::green($homeTitre[0]->titre)!!}</h2>
         </div>
         <div class="row">
             @foreach ($para as $item)

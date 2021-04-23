@@ -17,6 +17,12 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['isWebMaster'])->only(['valider']);
+        $this->middleware(['isRedacteur'])->only(['index','store','showBo','edit','udpate','destroy']);
+        $this->middleware(['isSecuritePost'])->only(['edit']);
+    }
     public function index()
     {
         $article=Post::where('check',1)->get();
@@ -81,6 +87,7 @@ class PostController extends Controller
    
     public function show($id)
     {
+       
         // -----Template-----
         $navbar= Navbar::all();
         $logo=Logo::all();
@@ -108,6 +115,7 @@ class PostController extends Controller
 
     public function edit($id)
     {
+        // $this->authorize('editPost');
         $edit = Post::find($id);
         $categorie=Categorie::all();
         $tag=Tag::all();

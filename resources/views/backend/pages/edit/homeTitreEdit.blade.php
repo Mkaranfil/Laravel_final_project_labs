@@ -28,6 +28,7 @@
                 <div class="form-group col-md-6">
                 <label for="titre">Titre</label>
                 <input type="text" class="form-control" id="href" name="titre" value="{{old('titre') ? old('titre') : $edit->titre}}">
+                <p>INFO: vous pouvez ajouter des [] pour selectionner le mots a mettre en vert</p>
                 </div>
                 <div class="form-group col-md-6">
                 <label for="href">Description</label>

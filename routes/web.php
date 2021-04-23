@@ -48,7 +48,6 @@ use App\Models\ServiceTitre;
 use App\Models\Tag;
 use App\Models\Testimonial;
 use App\Models\User;
-use Database\Seeders\ContactMapSeeder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -113,7 +112,8 @@ Route::get('/blog', function () {
     // -----Blog-----
     $tag=Tag::all();
     $categorie=Categorie::all();
-    $post=Post::orderBy('id','DESC')->paginate(3);
+    // $post=Post::orderBy('id','DESC')->paginate(3);
+    $post=Post::orderBy('id', 'DESC')->where('check', 1)->paginate(3);
      // -----Commentaire-----
      $postAll=Post::all();
      $comsValide=Commentaire::where('check',1)->get();
@@ -159,28 +159,28 @@ Route::get('/membresLabs', function() {
 
 
 // -----HOME-----
-Route::resource('navbar', NavbarController::class);
-Route::resource('logo', LogoController::class);
-Route::resource('logoTitre', LogoTitreController::class);
-Route::resource('carousel', CarouselController::class);
-Route::resource('homeTitre', HomeTitreController::class);
-Route::resource('paraHome', ParaHomeController::class);
-Route::resource('homeVideo', HomeVideoController::class);
-Route::resource('testimonial', TestimonialController::class);
+Route::resource('navbar', NavbarController::class)->middleware('isWebMaster');
+Route::resource('logo', LogoController::class)->middleware('isWebMaster');
+Route::resource('logoTitre', LogoTitreController::class)->middleware('isWebMaster');
+Route::resource('carousel', CarouselController::class)->middleware('isWebMaster');
+Route::resource('homeTitre', HomeTitreController::class)->middleware('isWebMaster');
+Route::resource('paraHome', ParaHomeController::class)->middleware('isWebMaster');
+Route::resource('homeVideo', HomeVideoController::class)->middleware('isWebMaster');
+Route::resource('testimonial', TestimonialController::class)->middleware('isWebMaster');
 // -----SERVICE-----
-Route::resource('serviceTitre', ServiceTitreController::class);
-Route::resource('serviceListe', ServiceListeController::class);
-Route::resource('serviceCarte', ServiceCardController::class);
+Route::resource('serviceTitre', ServiceTitreController::class)->middleware('isWebMaster');
+Route::resource('serviceListe', ServiceListeController::class)->middleware('isWebMaster');
+Route::resource('serviceCarte', ServiceCardController::class)->middleware('isWebMaster');
 // -----MEMBRES----
-Route::resource('membre', MembreController::class);
-Route::resource('poste', PosteController::class);
-Route::resource('role', RoleController::class);
-Route::get('/valider/{id}', [MembreController::class,'valider']);
+Route::resource('membre', MembreController::class)->middleware('isWebMaster');
+Route::resource('poste', PosteController::class)->middleware('isWebMaster');
+Route::resource('role', RoleController::class)->middleware('isWebMaster');
+Route::get('/valider/{id}', [MembreController::class,'valider'])->middleware('isWebMaster');
 // -----SelfUser----
 Route::resource('/selfUser', SelfUserController::class);
 // -----BLOG----
-Route::resource('blogCategorie', CategorieController::class);
-Route::resource('blogTag', TagController::class);
+Route::resource('blogCategorie', CategorieController::class)->middleware('isWebMaster');
+Route::resource('blogTag', TagController::class)->middleware('isWebMaster');
 Route::resource('blogArticle', PostController::class);
 Route::get('/showBo/{id}', [PostController::class,'showBo']);
 Route::get('/validerPost/{id}', [PostController::class,'valider']);
@@ -188,16 +188,16 @@ Route::get('/search', [BlogPostController::class, 'search']);
 Route::get('/filtreCategorie/{id}', [BlogPostController::class, 'filtreCategorie']);
 Route::get('/filtreTag/{id}', [BlogPostController::class, 'filtreTag']);
 // -----COMMENTAIRE----
-Route::resource('/commentaire', CommentaireController::class);
-Route::get('/validerComs/{id}', [CommentaireController::class,'validerComs']);
+Route::resource('/commentaire', CommentaireController::class)->middleware('isWebMaster');
+Route::get('/validerComs/{id}', [CommentaireController::class,'validerComs'])->middleware('isWebMaster');
 // -----FOOTER----
-Route::resource('/footer', FooterController::class);
+Route::resource('/footer', FooterController::class)->middleware('isWebMaster');
 // -----NEWSLETTER----
-Route::resource('/newsletterMail', NewsletterMailController::class);
+Route::resource('/newsletterMail', NewsletterMailController::class)->middleware('isWebMaster');
 // -----CONTACT----
-Route::resource('/contactUs', ContactUsController::class);
-Route::resource('/contactAdresse',ContactAdresseController::class);
-Route::resource('/contactSubject',ContactSubjectController::class);
+Route::resource('/contactUs', ContactUsController::class)->middleware('isWebMaster');
+Route::resource('/contactAdresse',ContactAdresseController::class)->middleware('isWebMaster');
+Route::resource('/contactSubject',ContactSubjectController::class)->middleware('isWebMaster');
 Route::resource('/contactFormulaire',ContactFormulaireController::class);
-Route::resource('/map',ContactMapController::class);
+Route::resource('/map',ContactMapController::class)->middleware('isWebMaster');
 

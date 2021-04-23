@@ -40,7 +40,7 @@ class NewsletterMailController extends Controller
         $store->save();
         $lastMail = $store->orderBy('id','desc')->first();
         Mail::to($lastMail)->send(new NLMail($lastMail));
-        return redirect()->back()->with('status', "Abonnement au Newsletter confirme! Verifie vos mails!");
+        return redirect()->back()->with('NLstatus', "Abonnement au Newsletter confirme! Verifie vos mails!");
     }
 
     /**

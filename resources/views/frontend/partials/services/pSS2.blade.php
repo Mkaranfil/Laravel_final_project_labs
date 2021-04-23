@@ -3,7 +3,7 @@
     <div class="overlay"></div>
     <div class="container">
         <div class="section-title">
-            <h2>{{$serviceTitre[1]->titre}}</h2>
+            <h2>{!! App\Helper\Color::green($serviceTitre[1]->titre)!!}</h2>
         </div>
         <div class="row">
             <div class="col-md-4 col-sm-4 features">

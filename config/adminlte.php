@@ -264,11 +264,16 @@ return [
         //     'icon' => 'fas fa-fw fa-lock',
         // ],
         
-        ['header' => 'MEMBRES'],
+        [
+            'header' => 'MEMBRES',
+            'can'=>'isWebMaster',
+    
+        ],
         [
             'text'       => 'Liste des membres',
             'icon_color' => 'cyan',
             'url'        => '/membre',
+            'can'=>'isWebMaster',
         ],
         [
             'text'       => 'Nouveau membres',
@@ -276,20 +281,28 @@ return [
             'url'        => '/membre/create',
             'label'       => 4,
             'label_color' => 'success',
+            'can'=>'isWebMaster',
         ],
         [
             'text'       => 'Configuration',
             'icon_color' => 'cyan',
             'url'        => '/poste',
+            'can'=>'isWebMaster',
         ],
 
-        ['header' => 'WEB SETTINGS'],
+        [
+            'header' => 'WEB SETTINGS',
+            'can'=>'isRedacteur',
+    
+        ],
         [
             'text'       => 'Navbar',
             'icon_color' => 'red',
             'url'        => '/navbar',
+            'can'=>'isWebMaster',
         ],
         [
+            'can'=>'isWebMaster',
             'text'    => 'Home',
             'icon_color' => 'yellow',
             'icon'    => 'fas fa-fw fa-share',
@@ -298,6 +311,7 @@ return [
                     'text' => 'Logo + Sous-titre',
                     'icon_color' => 'yellow',
                     'url'  => '/logo',
+
                 ],
                 [
                     'text' => 'Carousel',
@@ -327,6 +341,7 @@ return [
             ],
         ],
         [
+            'can'=>'isWebMaster',
             'text'    => 'Services',
             'icon_color' => 'cyan',
             'icon'    => 'fas fa-fw fa-share',
@@ -350,6 +365,7 @@ return [
             ],
         ],
         [
+            'can'=>'isRedacteur',
             'text'    => 'Blog',
             'icon_color' => 'yellow',
             'icon'    => 'fas fa-fw fa-share',
@@ -358,26 +374,31 @@ return [
                     'text' => 'Categorie',
                     'icon_color' => 'yellow',
                     'url'  => '/blogCategorie',
+                    'can'=>'isWebMaster',
                 ],
                 [
                     'text' => 'Tags',
                     'icon_color' => 'yellow',
                     'url'  => '/blogTag',
+                    'can'=>'isWebMaster',
                 ],
                 [
                     'text' => 'Article',
                     'icon_color' => 'yellow',
                     'url'  => '/blogArticle',
+                    'can'=>'isRedacteur',
                 ],
                 [
                     'text' => 'Commentaire',
                     'icon_color' => 'yellow',
                     'url'  => '/commentaire',
+                    'can'=>'isWebMaster',
                 ],
             
             ],
         ],
         [
+            'can'=>'isWebMaster',
             'text'    => 'Contact',
             'icon_color' => 'cyan',
             'icon'    => 'fas fa-fw fa-share',
@@ -407,6 +428,7 @@ return [
         ],
        
         [
+            'can'=>'isWebMaster',
             'text'       => 'Footer',
             'icon_color' => 'red',
             'url'        => '/footer',

@@ -2,7 +2,7 @@
 	<div class="services-section spad">
 		<div class="container">
 			<div class="section-title dark">
-				<h2>{{$homeTitre[2]->titre}}</h2>
+				<h2>{!! App\Helper\Color::green($homeTitre[2]->titre)!!}</h2>
 			</div>
 			<div class="row">
 				@foreach ($serviceListe->random(9) as $item)

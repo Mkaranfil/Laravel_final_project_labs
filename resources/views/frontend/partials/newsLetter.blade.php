@@ -1,9 +1,9 @@
 <!-- newsletter section -->
 <div class="newsletter-section spad">
     <div>
-        @if (session('status'))
+        @if (session('NLstatus'))
             <div class="alert alert-info" role="alert">
-                {{ session('status') }}
+                {{ session('NLstatus') }}
             </div>
         @endif
     </div>

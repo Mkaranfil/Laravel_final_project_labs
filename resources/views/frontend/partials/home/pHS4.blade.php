@@ -5,7 +5,8 @@
 			<div class="row">
 				<div class="col-md-8 col-md-offset-4">
 					<div class="section-title left">
-						<h2>{{$homeTitre[1]->titre}}</h2>
+						
+						<h2>{!! App\Helper\Color::green($homeTitre[1]->titre)!!}</h2>
 					</div>
 					<div class="owl-carousel" id="testimonial-slide">
 						@foreach ($testimonial as $item)	

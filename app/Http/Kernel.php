@@ -15,12 +15,15 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
+        // sur l'ensemble du site
         \App\Http\Middleware\TrustProxies::class,
         \Fruitcake\Cors\HandleCors::class,
         \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        \App\Http\Middleware\ViderCache::class,
+       
     ];
 
     /**
@@ -29,6 +32,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middlewareGroups = [
+        // sur les route web
         'web' => [
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
@@ -38,7 +42,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
-
+         // sur les route api
         'api' => [
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
@@ -52,6 +56,7 @@ class Kernel extends HttpKernel
      *
      * @var array
      */
+    // tu defini ton middelware et tu l'utilise ou tu veux
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
@@ -62,5 +67,12 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'isAdmin'=>\App\Http\Middleware\IsAdmin::class,
+        'isWebMaster'=>\App\Http\Middleware\IsWebMaster::class,
+        'isRedacteur'=>\App\Http\Middleware\IsRedacteur::class,
+        'isMembreValide'=>\App\Http\Middleware\IsMembreValide::class,
+        'isSecurite'=>\App\Http\Middleware\IsSecurite::class,
+        'isSecuritePost'=>\App\Http\Middleware\IsSecuritePost::class,
+        
     ];
 }

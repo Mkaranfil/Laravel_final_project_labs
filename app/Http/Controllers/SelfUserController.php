@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class SelfUserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['isSecurite'])->only('update');
+    }
     /**
      * Display a listing of the resource.
      *

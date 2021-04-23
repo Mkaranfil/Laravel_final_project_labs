@@ -32,15 +32,18 @@
             </thead>
             <tbody>
                 @foreach ($article as $item)
+                @can('isRealRedacteur',$item)
                     <tr>
                         <th scope="row">{{ $item->id }}</th>
                         <td>{{ $item->titre }}</td>
                             <td>
                                 {{$item->users->nom}}   {{$item->users->prenom}}
                             </td>
+                        
                         <td>
                             <a href="blogArticle/{{ $item->id }}/edit" class="btn btn-warning mb-2">Edit</a>
                         </td>
+                       
                         <td>
                             <a href="/showBo/{{ $item->id }}" class="btn btn-warning">SHOW</a>
                         </td>
@@ -52,11 +55,13 @@
                             </form>
                         </td>
                     </tr>
+                @endcan
                 @endforeach
             </tbody>
         </table>
     </div>
     {{-- Artcile non validee --}}
+    @can('isWebMaster')
     <div>
         <h3>Article a verifier: </h3>
         <table class="table table-striped table-hover shadow">
@@ -99,6 +104,7 @@
             </tbody>
         </table>
     </div>
+    @endcan
     {{-- ajouter --}}
     <div style="border: solid black 2px" class="p-5">
         <h3>Ajouter un Article: </h3>

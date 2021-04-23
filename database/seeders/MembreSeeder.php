@@ -57,7 +57,7 @@ class MembreSeeder extends Seeder
                 'role_id' => '4',
                 'picture_id' => 3,
                 'description' => 'Salut je suis membres valide',
-                'password' => Hash::make('MembreV@live.fr'),
+                'password' => Hash::make('membreV@live.fr'),
                 'check' => 1,
             ],
             [
